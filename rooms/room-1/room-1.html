@@ -1,12 +1,17 @@
 <a-entity id="room-1-group">
+    <a-entity id="player" position="0 1.6 5">
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+    </a-entity>
 
     <a-plane position="0 0 0" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
 
-    <a-box id='parent-box' position="0 0.5 0" width="5" depth="2" height=".5" color="grey">
+    <a-box id='parent-box' position="0 0.5 0" width="5" depth="2" height="1">
         <a-box class='token token-1' position='0 .5 0' width="1" depth="1" height=".5" color="black"></a-box>
         <a-box class='token token-2' position='2 .5 0' width="1" depth="1" height=".5" color="black"></a-box>
         <a-box class='token token-3' position='-2 .5 0' width="1" depth="1" height=".5" color="black"></a-box>
     </a-box>
-
-    <script src="./scripts/puzzle.js"></script>
 </a-entity>
+
+<script src="./rooms/room-1/scripts/puzzle.js"></script>

@@ -22,3 +22,5 @@ tokens.forEach(token => {
         }
     })
 })
+
+console.log('inside js file')
