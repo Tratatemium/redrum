@@ -1,4 +1,32 @@
 <a-entity id="corridor-group">
-    <a-plane position="0 0 0" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-    <a-cylinder position="0 0.75 0" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+
+    <!-- LIGHT -->
+    <a-light type="ambient" intensity="0.6"></a-light>
+
+    <a-entity gltf-model="/models/corridor/Corridor_01.glb" position="0 0 0" scale="1 1 1">
+    </a-entity>
+
+    <!-- LAMP 1 -->
+    <a-entity position="4.5 3 1.5">
+        <a-cylinder radius="0.08" height="0.3" color="#333333"></a-cylinder>
+        <a-sphere radius="0.15" color="#ffffaa" material="emissive: #ffffaa; emissiveIntensity: 0.8"
+            position="0 -0.25 0"></a-sphere>
+        <a-light type="point" color="#ffffaa" intensity="1.2" distance="6" position="0 -0.25 0"></a-light>
+    </a-entity>
+
+    <!-- LAMP 2 -->
+    <a-entity position="9 3 1.5">
+        <a-cylinder radius="0.08" height="0.3" color="#333333"></a-cylinder>
+        <a-sphere radius="0.15" color="#ffffaa" material="emissive: #ffffaa; emissiveIntensity: 0.8"
+            position="0 -0.25 0"></a-sphere>
+        <a-light type="point" color="#ffffaa" intensity="1.2" distance="6" position="0 -0.25 0"></a-light>
+    </a-entity>
+
+    <!-- LAMP 3 -->
+    <a-entity position="13.5 3 1.5">
+        <a-cylinder radius="0.08" height="0.3" color="#333333"></a-cylinder>
+        <a-sphere radius="0.15" color="#ffffaa" material="emissive: #ffffaa; emissiveIntensity: 0.8"
+            position="0 -0.25 0"></a-sphere>
+        <a-light type="point" color="#ffffaa" intensity="1.2" distance="6" position="0 -0.25 0"></a-light>
+    </a-entity>
 </a-entity>
