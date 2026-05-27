@@ -1,16 +1,22 @@
 <html>
 
 <head>
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  <script src="https://unpkg.com/@c-frame/aframe-physics-system@4.2.3/dist/aframe-physics-system.min.js"></script>
   <script type="module" src="./src/main.js"></script>
 </head>
 
 <body>
-  <a-scene>
+  <a-scene physics>
 
     <a-assets>
       <a-asset-item id="corridor" src="/models/corridor/Corridor_01.glb"></a-asset-item>
       <a-asset-item id="door" src="/models/corridor/Door.glb"></a-asset-item>
     </a-assets>
+
+    <a-entity id="player" position="1 0 1.5" rotation="0 -90 0" kinematic-body="radius: 0.3">
+      <a-camera look-controls wasd-controls=" acceleration: 20"></a-camera>
+    </a-entity>
 
     <a-sky color="#1a0000"></a-sky>
 
