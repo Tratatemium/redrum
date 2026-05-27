@@ -1,4 +1,5 @@
 AFRAME.registerComponent("corridor-state", {
+  dependencies: ["corridor-textures"],
   init() {
     this.el.addEventListener("model-loaded", () => {
       this.model = this.el.getObject3D("mesh");
@@ -21,17 +22,26 @@ AFRAME.registerComponent("corridor-state", {
     }
 
     const textures = textureComp.textures;
-    console.log("setState", state, "meshes:", Object.keys(this.meshes));
+
+    if (!textures[state]) {
+      console.warn(`corridor-state: unknown state "${state}"`);
+      return;
+    }
 
     Object.values(this.meshes).forEach((mesh) => {
       if (!mesh.material) return;
 
       if (mesh.name.startsWith("Floor")) {
+        const floorTexture = textures[state].floor;
+        if (!floorTexture) {
+          console.warn(`corridor-state: no floor texture for state "${state}"`);
+          return;
+        }
         if (!mesh.userData.materialCloned) {
           mesh.material = mesh.material.clone();
           mesh.userData.materialCloned = true;
         }
-        mesh.material.map = textures[state].floor;
+        mesh.material.map = floorTexture;
         mesh.material.needsUpdate = true;
       }
     });
