@@ -7,13 +7,30 @@
 
     <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
 
-    <a-box position='3.5 2 3' width=".25" depth=".25" height="4" color="black"></a-box>
-    <a-box id='parent-box' position="2 0.5 0" width="7" depth="2" height="1" rotation="0 90 0">
-        <a-box position='-3 .5 0' width=".25" depth=".75" height=".25" color="black"></a-box>
-        <a-box class='token token-1' position='0 .5 0' width="1" depth="1" height=".25" color="black"></a-box>
-        <a-box class='token token-2' position='2 .5 0' width="1" depth="1" height=".25" color="black"></a-box>
-        <a-box class='token token-3' position='-2 .5 0' width="1" depth="1" height=".25" color="black"></a-box>
-    </a-box>
+    <a-entity gltf-model="url(./rooms/room-1/assets/oldTable.glb)" position="2 .5 0" scale="2.5 2 2" rotation="0 90 0">
+        <a-entity gltf-model="url(./rooms/room-1/assets/vintage_lamp.glb)" position=".8 .5 0" scale="0.15 0.15 0.15">
+            <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
+                position="-0.471 2.790 1.404"></a-light>
+            <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
+                position="-1.953 2.790 1.404"></a-light>
+            <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
+                position="-3.556 2.790 1.211"></a-light>
+            <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
+                position="-5.078 2.790 1.221"></a-light>
+            <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
+                position="-6.631 2.790 1.221"></a-light>
+            <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
+                position="-7.914 2.790 1.221"></a-light>
+            <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
+                position="-8.809 2.790 1.221"></a-light>
+            <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
+                position="-9 2.790 1.221"></a-light>
+        </a-entity>
+        <a-box class='token token-2' position='0.351 0.601 0' width=".4" depth=".4" height=".1" color="pink"></a-box>
+        <a-box class='token token-3' position='-0.219 0.601 0' width=".4" depth=".4" height=".1" color="black"></a-box>
+        <a-box class='token token-1' position='-0.788 0.601 0' width=".4" depth=".4" height=".1" color="white"></a-box>
+    </a-entity>
+
 </a-entity>
 
 <script src="./rooms/room-1/scripts/puzzle.js"></script>

@@ -2,6 +2,8 @@ const tokens = document.querySelectorAll('.token')
 const token1 = document.querySelector('.token-1')
 const token2 = document.querySelector('.token-2')
 const token3 = document.querySelector('.token-3')
+const lights = document.querySelectorAll('.light')
+let solved = false
 
 tokens.forEach(token => {
     token.addEventListener('click', function () {
@@ -19,6 +21,11 @@ tokens.forEach(token => {
             && almost(token2.getAttribute('rotation').y, 40)
             && almost(token3.getAttribute('rotation').y, 60)) {
             console.log('clear puzzle')
+            solved = true
+
+            lights.forEach(light => {
+                light.setAttribute('color', '#FFF')
+            })
         }
     })
 })
