@@ -3,12 +3,14 @@
     <!-- LIGHT -->
     <a-light type="ambient" intensity="0.6"></a-light>
 
+    <!-- CORRIDOR -->
     <a-entity gltf-model="#corridor" position="0 0 0" scale="1 1 1" corridor-textures corridor-state>
     </a-entity>
 
-    <a-entity gltf-model="#door" position="9 0 0"></a-entity>
-    <a-entity gltf-model="#door" position="6 0 3" rotation="0 180 0"></a-entity>
-    <a-entity gltf-model="#door" position="18 0 0" rotation="0 -90 0"></a-entity>
+    <!-- DOORS -->
+    <a-entity gltf-model="#door" position="9 0 0" class="clickable" door></a-entity>
+    <a-entity gltf-model="#door" position="6 0 3" class="clickable" rotation="0 180 0" door></a-entity>
+    <a-entity gltf-model="#door" position="18 0 0" class="clickable" rotation="0 -90 0" door></a-entity>
 
     <!-- LAMP 1 -->
     <a-entity position="4.5 3 1.5">

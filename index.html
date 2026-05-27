@@ -15,7 +15,9 @@
     </a-assets>
 
     <a-entity id="player" position="1 0 1.5" rotation="0 -90 0" kinematic-body="radius: 0.3">
-      <a-camera look-controls wasd-controls=" acceleration: 20"></a-camera>
+      <a-camera look-controls wasd-controls="acceleration: 20" position="0 1.6 0" raycaster="objects: .clickable"
+        cursor="rayOrigin: mouse; fuse: false">
+      </a-camera>
     </a-entity>
 
     <a-sky color="#1a0000"></a-sky>
