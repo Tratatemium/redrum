@@ -11,6 +11,9 @@ importers:
       aframe:
         specifier: ^1.7.1
         version: 1.7.1
+      gsap:
+        specifier: ^3.15.0
+        version: 3.15.0
       vite-plugin-html-include:
         specifier: ^1.5.2
         version: 1.5.2(vite@8.0.14(@types/node@25.9.1))
@@ -292,6 +295,9 @@ packages:
   got@9.6.0:
     resolution: {integrity: sha512-R7eWptXuGYxwijs0eV+v3o6+XH1IqVK8dJOEecQfTmkncw9AV4dcw/Dhxi8MdlqPthxxpZyizMzyg8RTmEsG+Q==}
     engines: {node: '>=8.6'}
+
+  gsap@3.15.0:
+    resolution: {integrity: sha512-dMW4CWBTUK1AEEDeZc1g4xpPGIrSf9fJF960qbTZmN/QwZIWY5wgliS6JWl9/25fpTGJrMRtSjGtOmPnfjZB+A==}
 
   he@1.2.0:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
@@ -863,6 +869,8 @@ snapshots:
       p-cancelable: 1.1.0
       to-readable-stream: 1.0.0
       url-parse-lax: 3.0.0
+
+  gsap@3.15.0: {}
 
   he@1.2.0: {}
 
