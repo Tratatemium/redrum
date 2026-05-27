@@ -8,13 +8,17 @@
   <a-scene>
 
     <a-assets>
-      <a-asset-item id="room" src="./room-2/room.glb"></a-asset-item>
-      <a-asset-item id="navmesh" src="./room-2/navmesh.glb"></a-asset-item>
+      <a-asset-item id="corridor" src="/models/corridor/Corridor_01.glb"></a-asset-item>
+      <a-asset-item id="door" src="/models/corridor/Door.glb"></a-asset-item>
     </a-assets>
 
-    <a-sky color="#ECECEC"></a-sky>
+    <a-entity id="player" position="1 0 1.5" rotation="0 -90 0" kinematic-body="radius: 0.3">
+      <a-camera look-controls wasd-controls="acceleration: 20" position="0 1.6 0" raycaster="objects: .clickable"
+        cursor="rayOrigin: mouse; fuse: false">
+      </a-camera>
+    </a-entity>
 
-
+    <a-sky color="#1a0000"></a-sky>
 
     <a-entity id="corridor-anchor" position="0 0 0">
       <include file="./rooms/corridor/corridor.html"></include>
