@@ -7,6 +7,14 @@
 
     <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
 
+    <a-box position="0 5 -5" width="10" height="10" depth="0.1" color="grey"></a-box>
+    <a-box position="5 5 0" width="0.1" height="10" depth="10" color="grey"></a-box>
+
+    <a-entity id="roof-lamp" gltf-model="url(./rooms/room-1/assets/lamp.glb)" position="-20 5 0">
+        <a-light class='light' type="ambient" color="#FFF" intensity="2" distance="0"
+            position="-0.471 2.790 1.404"></a-light>
+    </a-entity>
+
     <a-entity gltf-model="url(./rooms/room-1/assets/oldTable.glb)" position="2 .5 0" scale="2.5 2 2" rotation="0 90 0">
         <a-entity gltf-model="url(./rooms/room-1/assets/vintage_lamp.glb)" position=".8 .5 0" scale="0.15 0.15 0.15">
             <a-light class='light' type="point" color="#FF0000" intensity="2.670" distance="2.180"
