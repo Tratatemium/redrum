@@ -5,12 +5,14 @@
         </a-camera>
     </a-entity>
 
-    <a-plane position="0 0 0" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+    <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
 
-    <a-box id='parent-box' position="0 0.5 0" width="5" depth="2" height="1">
-        <a-box class='token token-1' position='0 .5 0' width="1" depth="1" height=".5" color="black"></a-box>
-        <a-box class='token token-2' position='2 .5 0' width="1" depth="1" height=".5" color="black"></a-box>
-        <a-box class='token token-3' position='-2 .5 0' width="1" depth="1" height=".5" color="black"></a-box>
+    <a-box position='3.5 2 3' width=".25" depth=".25" height="4" color="black"></a-box>
+    <a-box id='parent-box' position="2 0.5 0" width="7" depth="2" height="1" rotation="0 90 0">
+        <a-box position='-3 .5 0' width=".25" depth=".75" height=".25" color="black"></a-box>
+        <a-box class='token token-1' position='0 .5 0' width="1" depth="1" height=".25" color="black"></a-box>
+        <a-box class='token token-2' position='2 .5 0' width="1" depth="1" height=".25" color="black"></a-box>
+        <a-box class='token token-3' position='-2 .5 0' width="1" depth="1" height=".25" color="black"></a-box>
     </a-box>
 </a-entity>
 
