@@ -4,8 +4,18 @@ AFRAME.registerComponent("corridor-textures", {
 
     this.textures = {
       normal: {
-        floor: loader.load("/materials/corridor/Floor_Normal_2.png"),
-        baseboard: loader.load("/materials/corridor/Baseboard_Normal.png"),
+        floor: {
+          texture: loader.load("/materials/corridor/Floor_Normal.png"),
+          name: "Floor",
+        },
+        wall: {
+          texture: loader.load("/materials/corridor/Wall_Normal.png"),
+          name: "Wall",
+        },
+        ceiling: {
+          texture: loader.load("/materials/corridor/Ceiling_Normal.png"),
+          name: "Ceiling",
+        },
       },
     };
 
