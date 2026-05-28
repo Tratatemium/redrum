@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "aframe": "^1.7.1",
+    "aframe-extras": "^7.7.0",
     "gsap": "^3.15.0",
     "vite-plugin-html-include": "^1.5.2"
   }

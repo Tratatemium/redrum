@@ -11,6 +11,8 @@
       <a-asset-item id="corridor" src="/models/corridor/Corridor_01.glb"></a-asset-item>
       <a-asset-item id="door" src="/models/corridor/Door.glb"></a-asset-item>
       <a-asset-item id="twins" src="/models/corridor/Twins.glb"></a-asset-item>
+      <a-asset-item id="room1" src="/rooms/room-1/assets/room-test.glb"></a-asset-item>
+      <a-asset-item id="room-2" src="/models/room-2/room.glb"></a-asset-item>
     </a-assets>
 
     <a-entity id="player" position="1 0 1.5" rotation="0 -90 0" kinematic-body="radius: 0.3">
@@ -25,11 +27,11 @@
       <include file="./rooms/corridor/corridor.html"></include>
     </a-entity>
 
-    <a-entity id="room-1-anchor" position="10 0 0">
+    <a-entity id="room-1-anchor" position="8 0 -4.760" rotation="0 180 0">
       <include file="./rooms/room-1/room-1.html"></include>
     </a-entity>
 
-    <a-entity id="room-2-anchor" position="0 0 10">
+    <a-entity id="room-2-anchor" position="0 0 5.020">
       <include file="./rooms/room-2/room-2.html"></include>
     </a-entity>
 
