@@ -1,8 +1,7 @@
 <a-entity id="corridor-group">
 
     <!-- CORRIDOR -->
-    <a-entity gltf-model="#corridor" position="0 0 0" scale="1 1 1" shadow="cast: true; receive: true" corridor-textures
-        corridor-state>
+    <a-entity gltf-model="#corridor" position="0 0 0" scale="1 1 1" corridor-textures corridor-state>
     </a-entity>
 
     <!-- TWINS -->
@@ -10,23 +9,29 @@
     </a-entity>
 
     <!-- DOORS -->
-    <a-entity gltf-model="#door" position="9 0 0" class="clickable" shadow="cast: true; receive: true" door></a-entity>
-    <a-entity gltf-model="#door" position="6 0 3" class="clickable" rotation="0 180 0"
-        shadow="cast: true; receive: true" door></a-entity>
-    <a-entity gltf-model="#door" position="18 0 0" class="clickable" rotation="0 -90 0"
-        shadow="cast: true; receive: true" door></a-entity>
+    <a-entity gltf-model="#door" position="9 0 0" class="clickable" door></a-entity>
+    <a-entity gltf-model="#door" position="6 0 3" class="clickable" rotation="0 180 0" door></a-entity>
+    <a-entity gltf-model="#door" position="18 0 0" class="clickable" rotation="0 -90 0" door></a-entity>
 
     <!-- CEILING LAMPS -->
     <a-entity gltf-model="#lamp-ceiling" position="4.5 3 1.5" class="clickable" lamp-controls>
-        <a-light light="type: point; castShadow: true; color: #ffffaa; intensity: 1.2; distance: 6"
-            position="0 -0.17 0"></a-light>
+        <a-light light="type: point; color: #ffffaa; intensity: 1.2; distance: 6" position="0 -0.17 0"></a-light>
     </a-entity>
     <a-entity gltf-model="#lamp-ceiling" position="9 3 1.5" class="clickable" lamp-controls>
-        <a-light light="type: point; castShadow: true; color: #ffffaa; intensity: 1.2; distance: 6"
-            position="0 -0.17 0"></a-light>
+        <a-light light="type: point; color: #ffffaa; intensity: 1.2; distance: 6" position="0 -0.17 0"></a-light>
     </a-entity>
     <a-entity gltf-model="#lamp-ceiling" position="13.5 3 1.5" class="clickable" lamp-controls>
-        <a-light light="type: point; castShadow: true; color: #ffffaa; intensity: 1.2; distance: 6"
-            position="0 -0.17 0"></a-light>
+        <a-light light="type: point; color: #ffffaa; intensity: 1.2; distance: 6" position="0 -0.17 0"></a-light>
+    </a-entity>
+
+    <!-- WALL LAMPS -->
+    <a-entity gltf-model="#lamp-wall" position="9.5 1.6 0" class="clickable" lamp-controls>
+        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 3" position="0 0 0.13"></a-light>
+    </a-entity>
+    <a-entity gltf-model="#lamp-wall" position="3.5 1.6 3" class="clickable" rotation="0 180 0" lamp-controls>
+        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 3" position="0 0 0.13"></a-light>
+    </a-entity>
+    <a-entity gltf-model="#lamp-wall" position="18 1.6 0.5" class="clickable" rotation="0 -90 0" lamp-controls>
+        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 3" position="0 0 0.13"></a-light>
     </a-entity>
 </a-entity>
