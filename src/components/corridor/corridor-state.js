@@ -1,3 +1,5 @@
+import { updateTextures } from "../../utils/texture.utils";
+
 AFRAME.registerComponent("corridor-state", {
   dependencies: ["corridor-textures"],
   init() {
@@ -14,36 +16,6 @@ AFRAME.registerComponent("corridor-state", {
   },
 
   setState(state) {
-    const textureComp = this.el.components["corridor-textures"];
-
-    if (!textureComp || !textureComp.textures) {
-      console.warn("corridor-textures component or textures not ready");
-      return;
-    }
-
-    const textures = textureComp.textures;
-
-    if (!textures[state]) {
-      console.warn(`corridor-state: unknown state "${state}"`);
-      return;
-    }
-
-    Object.values(this.meshes).forEach((mesh) => {
-      if (!mesh.material) return;
-
-      if (mesh.name.startsWith("Floor")) {
-        const floorTexture = textures[state].floor;
-        if (!floorTexture) {
-          console.warn(`corridor-state: no floor texture for state "${state}"`);
-          return;
-        }
-        if (!mesh.userData.materialCloned) {
-          mesh.material = mesh.material.clone();
-          mesh.userData.materialCloned = true;
-        }
-        mesh.material.map = floorTexture;
-        mesh.material.needsUpdate = true;
-      }
-    });
+    updateTextures(this, state);
   },
 });
