@@ -25,13 +25,18 @@
     </a-entity>
 
     <!-- WALL LAMPS -->
-    <a-entity gltf-model="#lamp-wall" position="9.5 1.6 0" class="clickable" lamp-controls>
-        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 3" position="0 0 0.13"></a-light>
-    </a-entity>
     <a-entity gltf-model="#lamp-wall" position="3.5 1.6 3" class="clickable" rotation="0 180 0" lamp-controls>
-        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 3" position="0 0 0.13"></a-light>
+        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 1; decay: 2"
+            position="0 0 0.13"></a-light>
     </a-entity>
-    <a-entity gltf-model="#lamp-wall" position="18 1.6 0.5" class="clickable" rotation="0 -90 0" lamp-controls>
-        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 3" position="0 0 0.13"></a-light>
+    <a-entity gltf-model="#lamp-wall" position="9.5 1.6 0" class="clickable" lamp-controls="variant: red">
+        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 1; decay: 2"
+            position="0 0 0.13"></a-light>
     </a-entity>
+    <a-entity gltf-model="#lamp-wall" position="18 1.6 0.5" class="clickable" rotation="0 -90 0"
+        lamp-controls="variant: red">
+        <a-light light="type: point; color: #ffffaa; intensity: 0.5; distance: 1; decay: 2"
+            position="0 0 0.13"></a-light>
+    </a-entity>
+    </a-light>
 </a-entity>
