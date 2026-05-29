@@ -14,7 +14,7 @@ AFRAME.registerComponent("door", {
       this.isOpen = !this.isOpen;
 
       gsap.to(this.door.rotation, {
-        y: this.isOpen ? -Math.PI / 2 : 0,
+        y: this.isOpen ? -Math.PI / 1.8 : 0,
         duration: 1,
         ease: "power2.out",
       });
