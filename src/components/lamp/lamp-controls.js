@@ -14,6 +14,23 @@ const VARIANTS = {
     emissiveIntensity: 0,
     light: { color: "#8A8568", intensity: 0 },
   },
+  // decayed: {
+  //   hex: 0xc8d27a,
+  //   emissiveIntensity: 2.5,
+  //   light: {
+  //     color: "#b8c96a",
+  //     intensity: 0.35,
+  //   },
+  // },
+
+  // frosted: {
+  //   hex: 0xdde8ff,
+  //   emissiveIntensity: 4,
+  //   light: {
+  //     color: "#d6e6ff",
+  //     intensity: 0.75,
+  //   },
+  // },
 };
 
 const variantsKeys = Object.keys(VARIANTS);
