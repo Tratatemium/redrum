@@ -8,15 +8,22 @@
   <a-scene>
 
     <a-assets>
+      <a-asset-item id="lamp-ceiling" src="/models/Lamp_Ceiling.glb"></a-asset-item>
+      <a-asset-item id="lamp-wall" src="/models/Lamp_Wall.glb"></a-asset-item>
+
       <a-asset-item id="corridor" src="/models/corridor/Corridor_01.glb"></a-asset-item>
       <a-asset-item id="door" src="/models/corridor/Door.glb"></a-asset-item>
       <a-asset-item id="twins" src="/models/corridor/Twins.glb"></a-asset-item>
+
       <a-asset-item id="room1" src="/rooms/room-1/assets/room-test.glb"></a-asset-item>
       <a-asset-item id="room-2" src="/models/room-2/room.glb"></a-asset-item>
     </a-assets>
 
+    <!-- LIGHT -->
+    <a-light type="ambient" intensity="0.1"></a-light>
+
     <!-- NAVMESH -->
-    <a-plane id="navmesh" width="17.9" height="2.9" position="9 -0.001 1.5" rotation="-90 0 0" nav-mesh></a-plane>
+    <!-- <a-plane id="navmesh" width="17.9" height="2.9" position="9 -0.001 1.5" rotation="-90 0 0" nav-mesh></a-plane> -->
 
     <!-- PLAYER -->
     <a-entity id="player-rig" position="1 0 1.5" rotation="0 -90 0" movement-controls="constrainToNavMesh: true">
