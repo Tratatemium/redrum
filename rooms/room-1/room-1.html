@@ -6,18 +6,12 @@
     </a-entity> -->
 
     <a-entity gltf-model="#room1" position="0 0 -3.7" rotation="0 180 0">
-        <a-entity gltf-model="#lamp-ceiling" position="0 3 0" class="clickable" lamp-controls>
-            <a-light light="type: point; color: #ffffaa; intensity: 1.2; distance: 6" position="0 -0.17 0"></a-light>
-        </a-entity>
-        <a-entity gltf-model="#lamp-ceiling" position="-4 3 0" class="clickable" lamp-controls>
-            <a-light light="type: point; color: #ffffaa; intensity: 1.2; distance: 6" position="0 -0.17 0"></a-light>
-        </a-entity>
-        <a-entity gltf-model="#lamp-ceiling" position="0 3 -5" class="clickable" lamp-controls>
-            <a-light light="type: point; color: #ffffaa; intensity: 1.2; distance: 6" position="0 -0.17 0"></a-light>
-        </a-entity>
-        <a-entity gltf-model="#lamp-ceiling" position="0 3 -8" class="clickable" lamp-controls>
-            <a-light light="type: point; color: #ffffaa; intensity: 1.2; distance: 6" position="0 -0.17 0"></a-light>
-        </a-entity>
+        <!-- CEILING LAMPS -->
+        <a-entity lamp="type: ceiling; variant: normal" position="0 3 0"></a-entity>
+        <a-entity lamp="type: ceiling; variant: normal" position="-4 3 0"></a-entity>
+        <a-entity lamp="type: ceiling; variant: normal" position="0 3 -5"></a-entity>
+        <a-entity lamp="type: ceiling; variant: normal" position="0 3 -8"></a-entity>
+
     </a-entity>
 
     <!-- 
