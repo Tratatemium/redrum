@@ -9,11 +9,6 @@ const VARIANTS = {
     emissiveIntensity: 6,
     light: { color: "#ff0000" },
   },
-  off: {
-    hex: 0xffffaa,
-    emissiveIntensity: 0,
-    light: { color: "#8A8568", intensity: 0 },
-  },
   decayed: {
     hex: 0xc8d27a,
     emissiveIntensity: 2.5,
@@ -29,6 +24,11 @@ const VARIANTS = {
       color: "#d6e6ff",
       intensity: 0.75,
     },
+  },
+  off: {
+    hex: 0xffffaa,
+    emissiveIntensity: 0,
+    light: { color: "#8A8568", intensity: 0 },
   },
 };
 
