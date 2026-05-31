@@ -2,6 +2,8 @@ import gsap from "gsap";
 
 AFRAME.registerComponent("door", {
   init() {
+    this.el.setAttribute("gltf-model", "#door");
+    this.el.classList.add("clickable");
     this.isOpen = false;
 
     this.el.addEventListener("model-loaded", () => {
