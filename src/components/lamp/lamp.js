@@ -14,4 +14,9 @@ AFRAME.registerComponent("lamp", {
     setLampType(this);
     handleVariants(this);
   },
+
+  update(oldData) {
+    if (oldData.variant === this.data.variant) return;
+    if (this._updateVariant) this._updateVariant();
+  },
 });

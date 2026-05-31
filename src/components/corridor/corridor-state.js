@@ -5,6 +5,7 @@ AFRAME.registerComponent("corridor-state", {
   init() {
     this.el.addEventListener("model-loaded", () => {
       this.model = this.el.getObject3D("mesh");
+      if (!this.model) return;
 
       this.meshes = {};
       this.model.traverse((node) => {

@@ -5,7 +5,4 @@ import "./components/corridor/corridor-textures";
 import "./components/corridor/corridor-state";
 
 import "./components/door/door";
-
 import "./components/lamp/lamp";
-import "./components/lamp/lamp-ceiling";
-import "./components/lamp/lamp-wall";

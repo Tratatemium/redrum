@@ -7,9 +7,9 @@
         <a-entity gltf-model="#twins" position="16.5 0 1.5" scale="1 1 1"></a-entity>
 
         <!-- DOORS -->
-        <a-entity door position="9 0 0"></a-entity>
-        <a-entity door position="6 0 3" rotation="0 180 0"></a-entity>
-        <a-entity door position="18 0 0" rotation="0 -90 0"></a-entity>
+        <a-entity id="door-1" door="lamp: #wall-lamp-1" position="6 0 3" rotation="0 180 0"></a-entity>
+        <a-entity id="door-2" door="lamp: #wall-lamp-2" position="9 0 0"></a-entity>
+        <a-entity id="door-3" door="lamp: #wall-lamp-3" position="18 0 0" rotation="0 -90 0"></a-entity>
 
         <!-- CEILING LAMPS -->
         <a-entity lamp="type: ceiling; variant: normal" position="4.5 3 1.5"></a-entity>
@@ -17,9 +17,11 @@
         <a-entity lamp="type: ceiling; variant: normal" position="13.5 3 1.5"></a-entity>
 
         <!-- WALL LAMPS -->
-        <a-entity lamp="type: wall; variant: normal" position="3.5 1.6 3" rotation="0 180 0"></a-entity>
-        <a-entity lamp="type: wall; variant: red" position="9.5 1.6 0"></a-entity>
-        <a-entity lamp="type: wall; variant: red" position="18 1.6 0.5" rotation="0 -90 0"></a-entity>
+        <a-entity id="wall-lamp-1" lamp="type: wall; variant: normal" position="3.5 1.6 3"
+            rotation="0 180 0"></a-entity>
+        <a-entity id="wall-lamp-2" lamp="type: wall; variant: normal" position="9.5 1.6 0"></a-entity>
+        <a-entity id="wall-lamp-3" lamp="type: wall; variant: normal" position="18 1.6 0.5"
+            rotation="0 -90 0"></a-entity>
 
     </a-entity>
 

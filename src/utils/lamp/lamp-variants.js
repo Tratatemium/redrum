@@ -74,6 +74,11 @@ function handleVariants(lamp) {
     applyVariant(VARIANTS[variantsKeys[lamp._i]]);
   });
 
+  lamp._updateVariant = () => {
+    lamp._i = Math.max(0, variantsKeys.indexOf(lamp.data.variant));
+    applyVariant(VARIANTS[variantsKeys[lamp._i]]);
+  };
+
   lamp.el.addEventListener("click", () => {
     if (!lamp.glassMaterial || !lamp.lightEl) return;
 
