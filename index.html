@@ -8,6 +8,8 @@
   <a-scene>
 
     <a-assets>
+      <a-asset-item id="navmesh" src="/models/Navmesh.glb"></a-asset-item>
+
       <a-asset-item id="lamp-ceiling" src="/models/Lamp_Ceiling.glb"></a-asset-item>
       <a-asset-item id="lamp-wall" src="/models/Lamp_Wall.glb"></a-asset-item>
 
@@ -19,12 +21,6 @@
       <a-asset-item id="room-2" src="/models/room-2/room.glb"></a-asset-item>
     </a-assets>
 
-    <!-- LIGHT -->
-    <a-light type="ambient" intensity="0.1"></a-light>
-
-    <!-- NAVMESH -->
-    <!-- <a-plane id="navmesh" width="17.9" height="2.9" position="9 -0.001 1.5" rotation="-90 0 0" nav-mesh></a-plane> -->
-
     <!-- PLAYER -->
     <a-entity id="player-rig" position="1 0 1.5" rotation="0 -90 0" movement-controls="constrainToNavMesh: true">
       <a-entity camera look-controls position="0 1.6 0">
@@ -32,16 +28,22 @@
       </a-entity>
     </a-entity>
 
+    <!-- NAVMESH -->
+    <a-entity id="navmesh" gltf-model="#navmesh" position="0 -0.001 0" nav-mesh></a-entity>
+
+    <!-- LIGHT -->
+    <a-light type="ambient" intensity="0.1"></a-light>
+
+    <!-- SKY -->
     <a-sky color="#1a0000"></a-sky>
 
+    <!-- ROOMS -->
     <a-entity id="corridor-anchor" position="0 0 0">
       <include file="./rooms/corridor/corridor.html"></include>
     </a-entity>
-
     <a-entity id="room-1-anchor" position="8 0 -4.760" rotation="0 180 0">
       <include file="./rooms/room-1/room-1.html"></include>
     </a-entity>
-
     <a-entity id="room-2-anchor" position="0 0 5.020">
       <include file="./rooms/room-2/room-2.html"></include>
     </a-entity>
