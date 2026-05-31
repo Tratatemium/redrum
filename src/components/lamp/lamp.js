@@ -35,12 +35,14 @@ const VARIANTS = {
 
 const variantsKeys = Object.keys(VARIANTS);
 
-AFRAME.registerComponent("lamp-controls", {
+AFRAME.registerComponent("lamp", {
   schema: {
     variant: { type: "string", default: "normal" },
   },
 
   init() {
+    this.el.classList.add("clickable");
+
     this.glassMaterial = null;
     this.lightEl = null;
     this.baseIntensity = 1;

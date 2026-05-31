@@ -4,4 +4,7 @@ import "aframe-extras";
 import "./components/corridor/corridor-textures";
 import "./components/corridor/corridor-state";
 import "./components/corridor/door";
-import "./components/lamp/lamp-controls";
+
+import "./components/lamp/lamp";
+import "./components/lamp/lamp-ceiling";
+import "./components/lamp/lamp-wall";
