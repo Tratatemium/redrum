@@ -34,24 +34,24 @@ const VARIANTS = {
 
 const variantsKeys = Object.keys(VARIANTS);
 
-function applyVariant(variant) {
-  const intensity = variant.emissiveIntensity === 0 ? 0 : lamp.baseIntensity;
-
-  if (lamp.glassMaterial) {
-    lamp.glassMaterial.color.setHex(variant.hex);
-    lamp.glassMaterial.emissive.setHex(variant.hex);
-    lamp.glassMaterial.emissiveIntensity = variant.emissiveIntensity;
-  }
-  if (lamp.lightEl) {
-    lamp.lightEl.setAttribute("light", { ...variant.light, intensity });
-  }
-}
-
 function handleVariants(lamp) {
   lamp.glassMaterial = null;
   lamp.lightEl = null;
   lamp.baseIntensity = 1;
   lamp._i = Math.max(0, variantsKeys.indexOf(lamp.data.variant));
+
+  function applyVariant(variant) {
+    const intensity = variant.emissiveIntensity === 0 ? 0 : lamp.baseIntensity;
+
+    if (lamp.glassMaterial) {
+      lamp.glassMaterial.color.setHex(variant.hex);
+      lamp.glassMaterial.emissive.setHex(variant.hex);
+      lamp.glassMaterial.emissiveIntensity = variant.emissiveIntensity;
+    }
+    if (lamp.lightEl) {
+      lamp.lightEl.setAttribute("light", { ...variant.light, intensity });
+    }
+  }
 
   lamp.el.addEventListener("model-loaded", () => {
     lamp.el.getObject3D("mesh").traverse((node) => {
