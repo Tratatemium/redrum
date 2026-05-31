@@ -12,7 +12,7 @@ AFRAME.registerComponent("corridor-state", {
         if (node.isMesh) this.meshes[node.name] = node;
       });
 
-      this.setState("frosted");
+      this.setState("normal");
     });
   },
 
