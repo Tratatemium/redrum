@@ -18,6 +18,10 @@ const LAMP_TYPES = {
 
 function setLampType(lamp) {
   const selected = LAMP_TYPES[lamp.data.type];
+  if (!selected) {
+    console.warn(`lamp-types: Unknown lamp type "${lamp.data.type}"`);
+    return;
+  }
   lamp.el.setAttribute("gltf-model", selected.model);
   lamp.el.classList.add(selected.class);
 
