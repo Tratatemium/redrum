@@ -41,7 +41,11 @@ function handleVariants(lamp) {
   lamp._i = Math.max(0, variantsKeys.indexOf(lamp.data.variant));
 
   function applyVariant(variant) {
-    const intensity = variant.emissiveIntensity === 0 ? 0 : lamp.baseIntensity;
+    const intensityMultiplier = variant.light.intensity ?? 1;
+    const intensity =
+      variant.emissiveIntensity === 0
+        ? 0
+        : lamp.baseIntensity * intensityMultiplier;
 
     if (lamp.glassMaterial) {
       lamp.glassMaterial.color.setHex(variant.hex);
