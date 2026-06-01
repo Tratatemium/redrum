@@ -13,6 +13,7 @@ AFRAME.registerComponent("corridor-state", {
       });
 
       this.doors = this.el.querySelectorAll(".door");
+      this.ceilingLamps = this.el.querySelectorAll(".lamp-ceiling");
 
       this.setState("frosted");
     });
@@ -23,6 +24,10 @@ AFRAME.registerComponent("corridor-state", {
     this.doors.forEach((door) => {
       const variant = state === "frosted" ? "frosted" : "normal";
       door.setAttribute("door-variants", "variant", variant);
+      door.setAttribute("door", "variant", variant);
     });
+    this.ceilingLamps.forEach((lamp) =>
+      lamp.setAttribute("lamp", "variant", state),
+    );
   },
 });

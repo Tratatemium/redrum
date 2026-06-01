@@ -10,7 +10,7 @@ function updateLampColor(door) {
   lamp.setAttribute(
     "lamp",
     "variant",
-    door.isOpen ? variants.open : variants.closed,
+    door.isOpen ? door.data.variant : variants.closed,
   );
 }
 
