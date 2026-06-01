@@ -12,11 +12,17 @@ AFRAME.registerComponent("corridor-state", {
         if (node.isMesh) this.meshes[node.name] = node;
       });
 
-      this.setState("normal");
+      this.doors = this.el.querySelectorAll(".door");
+
+      this.setState("frosted");
     });
   },
 
   setState(state) {
     updateMaterials(this, state);
+    this.doors.forEach((door) => {
+      const variant = state === "frosted" ? "frosted" : "normal";
+      door.setAttribute("door-variants", "variant", variant);
+    });
   },
 });

@@ -9,7 +9,7 @@ AFRAME.registerComponent("door", {
 
   init() {
     this.el.setAttribute("gltf-model", "#door");
-    this.el.classList.add("clickable", "collision");
+    this.el.classList.add("door", "clickable", "collision");
 
     this.isOpen = false;
     updateLampColor(this);
