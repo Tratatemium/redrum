@@ -54,7 +54,9 @@ function handleVariants(lamp) {
   }
 
   lamp.el.addEventListener("model-loaded", () => {
-    lamp.el.getObject3D("mesh").traverse((node) => {
+    const mesh = lamp.el.getObject3D("mesh");
+    if (!mesh) return;
+    mesh.traverse((node) => {
       if (!node.isMesh) return;
       const materials = Array.isArray(node.material)
         ? node.material
