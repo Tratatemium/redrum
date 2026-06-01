@@ -3,19 +3,17 @@ AFRAME.registerComponent("player-collision", {
     this.playerBox = new THREE.Box3();
     this.tempBox = new THREE.Box3();
     this.lastPos = new THREE.Vector3();
+    this.worldPos = new THREE.Vector3();
+    this.playerSize = new THREE.Vector3(0.3, 1.6, 0.3);
   },
 
   tick() {
-    this.walls = [...document.querySelectorAll(".collision")];
+    this.walls = document.querySelectorAll(".collision");
 
     const player = this.el.object3D;
     const rig = this.el.parentEl.object3D;
-    const worldPos = new THREE.Vector3();
-    player.getWorldPosition(worldPos);
-    this.playerBox.setFromCenterAndSize(
-      worldPos,
-      new THREE.Vector3(0.3, 1.6, 0.3),
-    );
+    player.getWorldPosition(this.worldPos);
+    this.playerBox.setFromCenterAndSize(this.worldPos, this.playerSize);
 
     let collided = false;
     for (const wall of this.walls) {
@@ -28,9 +26,9 @@ AFRAME.registerComponent("player-collision", {
       const currentX = rig.position.x;
       const currentZ = rig.position.z;
       rig.position.x = this.lastPos.x;
-      player.getWorldPosition(worldPos);
+      player.getWorldPosition(this.worldPos);
       this.playerBox.setFromCenterAndSize(
-        worldPos,
+        this.worldPos,
         new THREE.Vector3(0.3, 1.6, 0.3),
       );
       if (!this.playerBox.intersectsBox(this.tempBox)) break;
@@ -38,9 +36,9 @@ AFRAME.registerComponent("player-collision", {
       // Try sliding along X (revert only Z)
       rig.position.x = currentX;
       rig.position.z = this.lastPos.z;
-      player.getWorldPosition(worldPos);
+      player.getWorldPosition(this.worldPos);
       this.playerBox.setFromCenterAndSize(
-        worldPos,
+        this.worldPos,
         new THREE.Vector3(0.3, 1.6, 0.3),
       );
       if (!this.playerBox.intersectsBox(this.tempBox)) break;
