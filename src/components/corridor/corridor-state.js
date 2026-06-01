@@ -15,7 +15,7 @@ AFRAME.registerComponent("corridor-state", {
       this.doors = this.el.querySelectorAll(".door");
       this.ceilingLamps = this.el.querySelectorAll(".lamp-ceiling");
 
-      this.setState("frosted");
+      this.setState("normal");
     });
   },
 

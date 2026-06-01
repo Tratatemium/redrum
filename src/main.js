@@ -8,3 +8,4 @@ import "./components/door/door";
 import "./components/door/door-variants";
 import "./components/collision/player-collision";
 import "./components/lamp/lamp";
+import "./components/corridor/state-button";
