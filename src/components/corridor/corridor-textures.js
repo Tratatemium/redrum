@@ -17,6 +17,34 @@ AFRAME.registerComponent("corridor-textures", {
           name: "Ceiling",
         },
       },
+      decayed: {
+        floor: {
+          texture: loader.load("/materials/corridor/Floor_Decayed.png"),
+          name: "Floor",
+        },
+        wall: {
+          texture: loader.load("/materials/corridor/Wall_Decayed.png"),
+          name: "Wall",
+        },
+        ceiling: {
+          texture: loader.load("/materials/corridor/Ceiling_Decayed.png"),
+          name: "Ceiling",
+        },
+      },
+      frosted: {
+        floor: {
+          texture: loader.load("/materials/corridor/Floor_Normal.png"),
+          name: "Floor",
+        },
+        wall: {
+          texture: loader.load("/materials/corridor/Wall_Frosted.png"),
+          name: "Wall",
+        },
+        ceiling: {
+          texture: loader.load("/materials/corridor/Ceiling_Frosted.png"),
+          name: "Ceiling",
+        },
+      },
     };
 
     Object.values(this.textures.normal).forEach((tex) => {
