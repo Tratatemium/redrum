@@ -8,7 +8,7 @@ AFRAME.registerComponent("door", {
 
   init() {
     this.el.setAttribute("gltf-model", "#door");
-    this.el.classList.add("clickable");
+    this.el.classList.add("clickable", "collision");
 
     this.isOpen = false;
     updateLampColor(this);
@@ -22,6 +22,7 @@ AFRAME.registerComponent("door", {
 
       this.isOpen = !this.isOpen;
       updateLampColor(this);
+      this.el.classList.toggle("collision");
 
       gsap.to(this.door.rotation, {
         y: this.isOpen ? -Math.PI / 1.8 : 0,
