@@ -1,5 +1,4 @@
 const variants = {
-  open: "normal",
   closed: "red",
 };
 
@@ -10,7 +9,9 @@ function updateLampColor(door) {
   lamp.setAttribute(
     "lamp",
     "variant",
-    door.isOpen ? door.data.variant : variants.closed,
+    door.isOpen
+      ? door.el.components["door-variants"].data.variant
+      : variants.closed,
   );
 }
 

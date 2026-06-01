@@ -22,9 +22,7 @@ AFRAME.registerComponent("corridor-state", {
   setState(state) {
     updateMaterials(this, state);
     this.doors.forEach((door) => {
-      const variant = state === "frosted" ? "frosted" : "normal";
-      door.setAttribute("door-variants", "variant", variant);
-      door.setAttribute("door", "variant", variant);
+      door.setAttribute("door-variants", "variant", state);
     });
     this.ceilingLamps.forEach((lamp) =>
       lamp.setAttribute("lamp", "variant", state),

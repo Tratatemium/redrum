@@ -4,7 +4,6 @@ import { updateLampColor } from "../../utils/door/door-lamp";
 AFRAME.registerComponent("door", {
   schema: {
     lamp: { type: "selector" },
-    variant: { type: "string", default: "normal" },
   },
 
   init() {

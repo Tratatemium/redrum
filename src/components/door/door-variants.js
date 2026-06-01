@@ -1,3 +1,5 @@
+import { updateLampColor } from "../../utils/door/door-lamp";
+
 AFRAME.registerComponent("door-variants", {
   schema: {
     variant: { type: "string", default: "normal" },
@@ -7,6 +9,10 @@ AFRAME.registerComponent("door-variants", {
     const loader = new THREE.TextureLoader();
     this.textures = {
       normal: {
+        door: loader.load("/materials/corridor/Door_Normal.png"),
+        frame: loader.load("/materials/corridor/Frame_Normal.png"),
+      },
+      decayed: {
         door: loader.load("/materials/corridor/Door_Normal.png"),
         frame: loader.load("/materials/corridor/Frame_Normal.png"),
       },
@@ -29,6 +35,7 @@ AFRAME.registerComponent("door-variants", {
     if (!this.door) return;
     this.updateTexture(this.door, this.textures[this.data.variant].door);
     this.updateTexture(this.frame, this.textures[this.data.variant].frame);
+    updateLampColor(this.el.components["door"]);
   },
 
   updateTexture(mesh, texture) {
