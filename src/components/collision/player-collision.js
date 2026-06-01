@@ -47,7 +47,7 @@ AFRAME.registerComponent("player-collision", {
 
       // Full stop — revert both axes
       rig.position.x = this.lastPos.x;
-      rig.position.z = currentZ;
+      rig.position.z = this.lastPos.z;
       break;
     }
 
