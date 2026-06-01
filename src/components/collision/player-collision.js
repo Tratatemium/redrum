@@ -3,8 +3,6 @@ AFRAME.registerComponent("player-collision", {
     this.playerBox = new THREE.Box3();
     this.tempBox = new THREE.Box3();
     this.lastPos = new THREE.Vector3();
-
-    this.walls = [...document.querySelectorAll(".collision")];
   },
 
   tick() {
