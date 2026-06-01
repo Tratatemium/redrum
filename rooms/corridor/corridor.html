@@ -1,42 +1,28 @@
 <a-entity id="corridor-group">
 
-    <!-- LIGHT -->
-    <a-light type="ambient" intensity="0.6"></a-light>
-
     <!-- CORRIDOR -->
     <a-entity gltf-model="#corridor" position="0 0 0" scale="1 1 1" corridor-textures corridor-state>
+
+        <!-- TWINS -->
+        <a-entity gltf-model="#twins" position="16.5 0 1.5" scale="1 1 1"></a-entity>
+
+        <!-- DOORS -->
+        <a-entity id="door-1" door="lamp: #wall-lamp-1" position="6 0 3" rotation="0 180 0"></a-entity>
+        <a-entity id="door-2" door="lamp: #wall-lamp-2" position="9 0 0"></a-entity>
+        <a-entity id="door-3" door="lamp: #wall-lamp-3" position="18 0 0" rotation="0 -90 0"></a-entity>
+
+        <!-- CEILING LAMPS -->
+        <a-entity lamp="type: ceiling; variant: normal" position="4.5 3 1.5"></a-entity>
+        <a-entity lamp="type: ceiling; variant: normal" position="9 3 1.5"></a-entity>
+        <a-entity lamp="type: ceiling; variant: normal" position="13.5 3 1.5"></a-entity>
+
+        <!-- WALL LAMPS -->
+        <a-entity id="wall-lamp-1" lamp="type: wall" position="3.5 1.6 3" rotation="0 180 0"></a-entity>
+        <a-entity id="wall-lamp-2" lamp="type: wall" position="9.5 1.6 0"></a-entity>
+        <a-entity id="wall-lamp-3" lamp="type: wall" position="18 1.6 0.5" rotation="0 -90 0"></a-entity>
+
+        <!-- <a-box class="collision" position="3 1 1.5" width="2" height="2" depth="0.2" rotation="0 90 0"></a-box> -->
+
     </a-entity>
 
-    <!-- TWINS -->
-    <a-entity gltf-model="#twins" position="16.5 0 1.5" scale="1 1 1">
-    </a-entity>
-
-    <!-- DOORS -->
-    <a-entity gltf-model="#door" position="9 0 0" class="clickable" door></a-entity>
-    <a-entity gltf-model="#door" position="6 0 3" class="clickable" rotation="0 180 0" door></a-entity>
-    <a-entity gltf-model="#door" position="18 0 0" class="clickable" rotation="0 -90 0" door></a-entity>
-
-    <!-- LAMP 1 -->
-    <a-entity position="4.5 3 1.5">
-        <a-cylinder radius="0.08" height="0.3" color="#333333"></a-cylinder>
-        <a-sphere radius="0.15" color="#ffffaa" material="emissive: #ffffaa; emissiveIntensity: 0.8"
-            position="0 -0.25 0"></a-sphere>
-        <a-light type="point" color="#ffffaa" intensity="1.2" distance="6" position="0 -0.25 0"></a-light>
-    </a-entity>
-
-    <!-- LAMP 2 -->
-    <a-entity position="9 3 1.5">
-        <a-cylinder radius="0.08" height="0.3" color="#333333"></a-cylinder>
-        <a-sphere radius="0.15" color="#ffffaa" material="emissive: #ffffaa; emissiveIntensity: 0.8"
-            position="0 -0.25 0"></a-sphere>
-        <a-light type="point" color="#ffffaa" intensity="1.2" distance="6" position="0 -0.25 0"></a-light>
-    </a-entity>
-
-    <!-- LAMP 3 -->
-    <a-entity position="13.5 3 1.5">
-        <a-cylinder radius="0.08" height="0.3" color="#333333"></a-cylinder>
-        <a-sphere radius="0.15" color="#ffffaa" material="emissive: #ffffaa; emissiveIntensity: 0.8"
-            position="0 -0.25 0"></a-sphere>
-        <a-light type="point" color="#ffffaa" intensity="1.2" distance="6" position="0 -0.25 0"></a-light>
-    </a-entity>
 </a-entity>
