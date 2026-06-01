@@ -1,4 +1,4 @@
-import { updateTextures } from "../../utils/texture.utils";
+import { updateMaterials } from "../../utils/corridor/material.utils";
 
 AFRAME.registerComponent("corridor-state", {
   dependencies: ["corridor-textures"],
@@ -17,6 +17,6 @@ AFRAME.registerComponent("corridor-state", {
   },
 
   setState(state) {
-    updateTextures(this, state);
+    updateMaterials(this, state);
   },
 });
