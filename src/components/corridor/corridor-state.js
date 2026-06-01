@@ -14,6 +14,7 @@ AFRAME.registerComponent("corridor-state", {
 
       this.doors = this.el.querySelectorAll(".door");
       this.ceilingLamps = this.el.querySelectorAll(".lamp-ceiling");
+      this.redrum = this.el.querySelector("#redrum");
 
       this.setState("normal");
     });
@@ -27,5 +28,6 @@ AFRAME.registerComponent("corridor-state", {
     this.ceilingLamps.forEach((lamp) =>
       lamp.setAttribute("lamp", "variant", state),
     );
+    this.redrum.setAttribute("redrum", "variant", state);
   },
 });

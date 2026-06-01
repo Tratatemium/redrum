@@ -6,6 +6,7 @@ import "./components/corridor/corridor-state";
 
 import "./components/door/door";
 import "./components/door/door-variants";
-import "./components/collision/player-collision";
 import "./components/lamp/lamp";
+import "./components/collision/player-collision";
+import "./components/corridor/redrum";
 import "./components/corridor/state-button";
