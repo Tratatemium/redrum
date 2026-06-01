@@ -19,6 +19,7 @@ function updateTexture(mesh, textures, state) {
         console.warn(`corridor-state: no ${key} texture for state "${state}"`);
         return;
       }
+      texture.colorSpace = THREE.SRGBColorSpace;
       if (!mesh.userData.materialCloned) {
         mesh.material = mesh.material.clone();
         mesh.userData.materialCloned = true;
