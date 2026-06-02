@@ -9,10 +9,10 @@
 
     <!-- STATUE -->
 
-    <a-entity id="statue" position="4.5 0 2.5">
-        <a-box sound="src: #stone2; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" color="green" position="0 0.95 0" depth="0.6" height="0.4" width="0.6" rotation="0 45 0"></a-box>
-        <a-box sound="src: #stone1; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" color="blue" position="0 0.55 0" depth="0.6" height="0.4" width="0.6" rotation="0 67.5 0"></a-box>
-        <a-box sound="src: #stone2; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" color="red" position="0 0.15 0" depth="0.6" height="0.4" width="0.6" rotation="0 90 0"></a-box>
+    <a-entity id="statue" position="4.5 0 2.5" rotation="0 180 0">
+        <a-gltf-model position="0 0.9 0" src="#statue-head" sound="src: #stone2; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" rotation="0 45 0"></a-gltf-model>
+        <a-gltf-model position="0 0.9 0" src="#statue-torso" sound="src: #stone1; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" rotation="0 67.5 0"></a-gltf-model>
+        <a-gltf-model position="0 0.9 0" src="#statue-legs" sound="src: #stone2; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" rotation="0 90 0"></a-gltf-model>
     </a-entity>
 
 
