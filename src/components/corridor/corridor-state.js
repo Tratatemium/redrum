@@ -1,4 +1,4 @@
-import { updateTextures } from "../../utils/texture.utils";
+import { updateMaterials } from "../../utils/corridor/material.utils";
 
 AFRAME.registerComponent("corridor-state", {
   dependencies: ["corridor-textures"],
@@ -12,11 +12,22 @@ AFRAME.registerComponent("corridor-state", {
         if (node.isMesh) this.meshes[node.name] = node;
       });
 
+      this.doors = this.el.querySelectorAll(".door");
+      this.ceilingLamps = this.el.querySelectorAll(".lamp-ceiling");
+      this.redrum = this.el.querySelector("#redrum");
+
       this.setState("normal");
     });
   },
 
   setState(state) {
-    updateTextures(this, state);
+    updateMaterials(this, state);
+    this.doors.forEach((door) => {
+      door.setAttribute("door-variants", "variant", state);
+    });
+    this.ceilingLamps.forEach((lamp) =>
+      lamp.setAttribute("lamp", "variant", state),
+    );
+    this.redrum.setAttribute("redrum", "variant", state);
   },
 });
