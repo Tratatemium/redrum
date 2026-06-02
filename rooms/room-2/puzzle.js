@@ -18,12 +18,15 @@ AFRAME.registerComponent('rotate-on-click', {
   init: function () {
     this.el.addEventListener('click', () => {
       const current = this.el.object3D.rotation[this.data.axis];
-      console.log( THREE.MathUtils.radToDeg(current))
+      const target = current - THREE.MathUtils.degToRad(this.data.degrees);
       gsap.to(this.el.object3D.rotation, {
-        [this.data.axis]: current - THREE.MathUtils.degToRad(this.data.degrees),
+        [this.data.axis]: target,
         duration: 0.5,
         ease: 'power2.out',
         onComplete: () => {
+          const rad = this.el.object3D.rotation[this.data.axis];
+          const normalized = ((rad % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+          this.el.object3D.rotation[this.data.axis] = normalized;
           if (isSolved()) console.log("solved");
         }
       });
