@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import { updateLampColor } from "../../utils/door.utils";
+import { updateLampColor } from "../../utils/door/door-lamp";
 
 AFRAME.registerComponent("door", {
   schema: {
@@ -8,7 +8,7 @@ AFRAME.registerComponent("door", {
 
   init() {
     this.el.setAttribute("gltf-model", "#door");
-    this.el.classList.add("clickable", "collision");
+    this.el.classList.add("door", "clickable", "collision");
 
     this.isOpen = false;
     updateLampColor(this);

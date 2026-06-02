@@ -14,7 +14,7 @@ const VARIANTS = {
     emissiveIntensity: 2.5,
     light: {
       color: "#b8c96a",
-      intensity: 0.35,
+      intensity: 0.65,
     },
   },
   frosted: {
@@ -22,7 +22,7 @@ const VARIANTS = {
     emissiveIntensity: 4,
     light: {
       color: "#d6e6ff",
-      intensity: 0.75,
+      intensity: 0.85,
     },
   },
   off: {

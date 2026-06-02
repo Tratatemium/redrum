@@ -7,9 +7,9 @@
         <a-entity gltf-model="#twins" position="16.5 0 1.5" scale="1 1 1"></a-entity>
 
         <!-- DOORS -->
-        <a-entity id="door-1" door="lamp: #wall-lamp-1" position="6 0 3" rotation="0 180 0"></a-entity>
-        <a-entity id="door-2" door="lamp: #wall-lamp-2" position="9 0 0"></a-entity>
-        <a-entity id="door-3" door="lamp: #wall-lamp-3" position="18 0 0" rotation="0 -90 0"></a-entity>
+        <a-entity id="door-1" door="lamp: #wall-lamp-1" door-variants position="6 0 3" rotation="0 180 0"></a-entity>
+        <a-entity id="door-2" door="lamp: #wall-lamp-2" door-variants position="9 0 0"></a-entity>
+        <a-entity id="door-3" door="lamp: #wall-lamp-3" door-variants position="18 0 0" rotation="0 -90 0"></a-entity>
 
         <!-- CEILING LAMPS -->
         <a-entity lamp="type: ceiling; variant: normal" position="4.5 3 1.5"></a-entity>
@@ -21,8 +21,16 @@
         <a-entity id="wall-lamp-2" lamp="type: wall" position="9.5 1.6 0"></a-entity>
         <a-entity id="wall-lamp-3" lamp="type: wall" position="18 1.6 0.5" rotation="0 -90 0"></a-entity>
 
-        <!-- <a-box class="collision" position="3 1 1.5" width="2" height="2" depth="0.2" rotation="0 90 0"></a-box> -->
-
+        <a-plane redrum id="redrum" width="2" height="0.523" position="10.5 1.2 2.999" rotation="0 180 20"
+            material="transparent: true; opacity: 1; alphaTest: 0.1"></a-plane>
     </a-entity>
+
+    <!-- STATE BUTTONS -->
+    <a-entity position="0.05 1.4 0.7" rotation="0 90 0"
+        state-button="state: normal; label: Normal; color: #2a4a8a"></a-entity>
+    <a-entity position="0.05 1.4 1.5" rotation="0 90 0"
+        state-button="state: decayed; label: Decayed; color: #5a3a1a"></a-entity>
+    <a-entity position="0.05 1.4 2.3" rotation="0 90 0"
+        state-button="state: frosted; label: Frosted; color: #1a5a6a"></a-entity>
 
 </a-entity>
