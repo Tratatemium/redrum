@@ -1,3 +1,5 @@
+import { createFlicker } from "./flicker";
+
 const VARIANTS = {
   normal: {
     hex: 0xffffaa,
@@ -34,28 +36,26 @@ const VARIANTS = {
 
 const variantsKeys = Object.keys(VARIANTS);
 
+function applyVariant(lamp, variant) {
+  const intensityMultiplier = variant.light.intensity ?? 1;
+  const isOff = variant.emissiveIntensity === 0;
+  const intensity = isOff ? 0 : lamp.baseIntensity * intensityMultiplier;
+
+  if (lamp.glassMaterial) {
+    lamp.glassMaterial.color.setHex(variant.hex);
+    lamp.glassMaterial.emissive.setHex(variant.hex);
+    lamp.glassMaterial.emissiveIntensity = variant.emissiveIntensity;
+  }
+  if (lamp.lightEl) {
+    lamp.lightEl.setAttribute("light", { ...variant.light, intensity });
+  }
+}
+
 function handleVariants(lamp) {
   lamp.glassMaterial = null;
   lamp.lightEl = null;
   lamp.baseIntensity = 1;
-  lamp._i = Math.max(0, variantsKeys.indexOf(lamp.data.variant));
-
-  function applyVariant(variant) {
-    const intensityMultiplier = variant.light.intensity ?? 1;
-    const intensity =
-      variant.emissiveIntensity === 0
-        ? 0
-        : lamp.baseIntensity * intensityMultiplier;
-
-    if (lamp.glassMaterial) {
-      lamp.glassMaterial.color.setHex(variant.hex);
-      lamp.glassMaterial.emissive.setHex(variant.hex);
-      lamp.glassMaterial.emissiveIntensity = variant.emissiveIntensity;
-    }
-    if (lamp.lightEl) {
-      lamp.lightEl.setAttribute("light", { ...variant.light, intensity });
-    }
-  }
+  lamp._variantIndex = Math.max(0, variantsKeys.indexOf(lamp.data.variant));
 
   lamp.el.addEventListener("model-loaded", () => {
     const mesh = lamp.el.getObject3D("mesh");
@@ -77,20 +77,20 @@ function handleVariants(lamp) {
         lamp.lightEl.components?.light?.data?.intensity ?? lamp.baseIntensity;
     }
 
-    applyVariant(VARIANTS[variantsKeys[lamp._i]]);
+    applyVariant(lamp, VARIANTS[variantsKeys[lamp._variantIndex]]);
   });
 
   lamp._updateVariant = () => {
-    lamp._i = Math.max(0, variantsKeys.indexOf(lamp.data.variant));
-    applyVariant(VARIANTS[variantsKeys[lamp._i]]);
+    lamp._variantIndex = Math.max(0, variantsKeys.indexOf(lamp.data.variant));
+    applyVariant(lamp, VARIANTS[variantsKeys[lamp._variantIndex]]);
   };
 
   lamp.el.addEventListener("click", () => {
     if (!lamp.glassMaterial || !lamp.lightEl) return;
 
-    lamp._i = (lamp._i + 1) % variantsKeys.length;
-    applyVariant(VARIANTS[variantsKeys[lamp._i]]);
+    lamp._variantIndex = (lamp._variantIndex + 1) % variantsKeys.length;
+    applyVariant(lamp, VARIANTS[variantsKeys[lamp._variantIndex]]);
   });
 }
 
-export { handleVariants };
+export { VARIANTS, applyVariant, handleVariants };
