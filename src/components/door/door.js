@@ -10,6 +10,20 @@ AFRAME.registerComponent("door", {
     this.el.setAttribute("gltf-model", "#door");
     this.el.classList.add("door", "clickable", "collision");
 
+    this.el.setAttribute("sound__open", {
+      src: "#door-open",
+      volume: 0.6,
+      positional: true,
+      rolloffFactor: 2,
+    });
+
+    this.el.setAttribute("sound__close", {
+      src: "#door-close",
+      volume: 0.6,
+      positional: true,
+      rolloffFactor: 2,
+    });
+
     this.isOpen = false;
     updateLampColor(this);
 
@@ -19,6 +33,8 @@ AFRAME.registerComponent("door", {
 
     this.el.addEventListener("click", () => {
       if (!this.door) return;
+      if (!this.isOpen) this.el.components["sound__open"].playSound();
+      else this.el.components["sound__close"].playSound();
 
       this.isOpen = !this.isOpen;
       updateLampColor(this);
