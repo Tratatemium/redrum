@@ -16,6 +16,10 @@ AFRAME.registerComponent("corridor-textures", {
           texture: loader.load("/materials/corridor/Ceiling_Normal.png"),
           name: "Ceiling",
         },
+        baseboard: {
+          texture: loader.load("/materials/corridor/Baseboard_Normal.png"),
+          name: "Baseboard",
+        },
       },
       decayed: {
         floor: {
@@ -30,10 +34,14 @@ AFRAME.registerComponent("corridor-textures", {
           texture: loader.load("/materials/corridor/Ceiling_Decayed.png"),
           name: "Ceiling",
         },
+        baseboard: {
+          texture: loader.load("/materials/corridor/Baseboard_Normal.png"),
+          name: "Baseboard",
+        },
       },
       frosted: {
         floor: {
-          texture: loader.load("/materials/corridor/Floor_Normal.png"),
+          texture: loader.load("/materials/corridor/Floor_Frosted.png"),
           name: "Floor",
         },
         wall: {
@@ -43,6 +51,10 @@ AFRAME.registerComponent("corridor-textures", {
         ceiling: {
           texture: loader.load("/materials/corridor/Ceiling_Frosted.png"),
           name: "Ceiling",
+        },
+        baseboard: {
+          texture: loader.load("/materials/corridor/Baseboard_Frosted.png"),
+          name: "Baseboard",
         },
       },
     };
