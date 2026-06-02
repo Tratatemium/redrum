@@ -30,7 +30,7 @@ AFRAME.registerComponent('rotate-on-click', {
 
       gsap.to(this.el.object3D.rotation, {
         [this.data.axis]: targetRotation,
-        duration: 0.5,
+        duration: 1,
         ease: 'power2.out',
         onComplete: () => {
           const rotationRadians = this.el.object3D.rotation[this.data.axis];
