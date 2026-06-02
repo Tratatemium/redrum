@@ -6,7 +6,6 @@ function createFlicker(lamp) {
     baseVariant:
       VARIANTS[lamp.el.components["lamp"].data.variant] ?? VARIANTS.normal,
     repeatDelay: 0.8,
-    randomizeDelay: true,
   };
 
   let tl = null;
@@ -22,21 +21,11 @@ function createFlicker(lamp) {
   return {
     normal() {
       killAll();
-      gsap.to({
-        duration: 0.2,
-        onUpdate() {
-          applyVariant(lamp, VARIANTS.normal);
-        },
-      });
+      applyVariant(lamp, cfg.baseVariant);
     },
     off() {
       killAll();
-      gsap.to({
-        duration: 0.2,
-        onUpdate() {
-          applyVariant(lamp, VARIANTS.off);
-        },
-      });
+      applyVariant(lamp, VARIANTS.off);
     },
 
     flicker(duration = 5) {
@@ -47,11 +36,14 @@ function createFlicker(lamp) {
 
       function runCycle() {
         const proxy = { v: baseIntensity };
-        const setLight = () =>
+        const setLight = () => {
+          const ratio = baseIntensity > 0 ? proxy.v / baseIntensity : 0;
           applyVariant(lamp, {
             ...cfg.baseVariant,
+            emissiveIntensity: cfg.baseVariant.emissiveIntensity * ratio,
             light: { ...cfg.baseVariant.light, intensity: proxy.v },
           });
+        };
 
         tl = gsap.timeline({
           onComplete() {

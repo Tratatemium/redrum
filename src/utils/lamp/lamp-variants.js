@@ -1,5 +1,3 @@
-import { createFlicker } from "./flicker";
-
 const VARIANTS = {
   normal: {
     hex: 0xffffaa,
