@@ -1,5 +1,6 @@
 import AFRAME from "aframe";
 import "aframe-extras";
+import "aframe-particle-system-component";
 
 import "./components/corridor/corridor-textures";
 import "./components/corridor/corridor-state";

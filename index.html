@@ -12,7 +12,6 @@
 
       <a-asset-item id="lamp-ceiling" src="/models/Lamp_Ceiling.glb"></a-asset-item>
       <a-asset-item id="lamp-wall" src="/models/Lamp_Wall.glb"></a-asset-item>
-      <a-asset-item id="corridor" src="/models/corridor/Corridor_01.glb"></a-asset-item>
       <a-asset-item id="door" src="/models/corridor/Door.glb"></a-asset-item>
       <a-asset-item id="twins" src="/models/corridor/Twins.glb"></a-asset-item>
 
@@ -20,8 +19,10 @@
       <a-asset-item id="statue-legs" src="/models/room-2/statue-legs.glb"></a-asset-item>
       <a-asset-item id="statue-torso" src="/models/room-2/statue-torso.glb"></a-asset-item>
 
+      <a-asset-item id="corridor" src="/models/corridor/Corridor_01.glb"></a-asset-item>
       <a-asset-item id="room1" src="/rooms/room-1/assets/room-test.glb"></a-asset-item>
       <a-asset-item id="room-2" src="/models/room-2/room.glb"></a-asset-item>
+      <a-asset-item id="maze" src="/models/maze/Maze.glb"></a-asset-item>
 
       <audio id="door-open" src="/audio/door/door_open.mp3" preload="auto"></audio>
       <audio id="door-close" src="/audio/door/door_close.mp3" preload="auto"></audio>
@@ -56,6 +57,9 @@
     </a-entity>
     <a-entity id="room-2-anchor" position="0 0 5.020">
       <include file="./rooms/room-2/room-2.html"></include>
+    </a-entity>
+    <a-entity id="maze-anchor" position="18.099 0 0">
+      <include file="./rooms/maze/maze.html"></include>
     </a-entity>
 
   </a-scene>
