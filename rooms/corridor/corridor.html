@@ -1,7 +1,8 @@
 <a-entity id="corridor-group">
 
     <!-- CORRIDOR -->
-    <a-entity gltf-model="#corridor" position="0 0 0" scale="1 1 1" corridor-textures corridor-state>
+    <a-entity gltf-model="#corridor" position="0 0 0" scale="1 1 1" corridor-textures corridor-state
+        corridor-transition>
 
         <!-- TWINS -->
         <a-entity gltf-model="#twins" position="16.5 0 1.5" scale="1 1 1"></a-entity>
@@ -34,5 +35,11 @@
         state-button="state: frosted; label: Frosted; color: #1a5a6a"></a-entity>
     <a-entity position="0.05 1.1 1.5" rotation="0 90 0"
         flicker-button="selector: [lamp]; label: Flicker; color: #4a1a4a"></a-entity>
+
+    <!-- PUZZLE EVENT BUTTONS -->
+    <a-entity position="0.05 0.8 1.1" rotation="0 90 0"
+        event-button="event: puzzle-1-solved; label: Puzzle 1; color: #1a6a3a"></a-entity>
+    <a-entity position="0.05 0.8 1.9" rotation="0 90 0"
+        event-button="event: puzzle-2-solved; label: Puzzle 2; color: #6a3a1a"></a-entity>
 
 </a-entity>
