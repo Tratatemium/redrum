@@ -1,12 +1,19 @@
+import {
+  setupTransition,
+  doFirstTransition,
+} from "../../utils/corridor/transition.utils";
+
 AFRAME.registerComponent("corridor-transition", {
   dependencies: ["corridor-state"],
   init() {
     const corridor = document.querySelector("[corridor-state]");
     if (!corridor) return;
-    console.log("mounted");
+
+    setupTransition(this);
 
     const scene = this.el.sceneEl;
-    scene.addEventListener("puzzle-1-solved", () => {
+    scene.addEventListener("puzzle-1-solved", async () => {
+      await doFirstTransition(this);
       corridor.components["corridor-state"].setState("decayed");
     });
     scene.addEventListener("puzzle-2-solved", () => {

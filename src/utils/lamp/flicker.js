@@ -5,7 +5,7 @@ function createFlicker(lamp) {
   const cfg = {
     baseVariant:
       VARIANTS[lamp.el.components["lamp"].data.variant] ?? VARIANTS.normal,
-    repeatDelay: 0.8,
+    repeatDelay: 0.4,
   };
 
   let tl = null;
@@ -34,6 +34,11 @@ function createFlicker(lamp) {
       const baseIntensity = cfg.baseVariant.light.intensity ?? 1;
       const endTime = gsap.ticker.time + duration;
 
+      let resolve;
+      const promise = new Promise((res) => {
+        resolve = res;
+      });
+
       function runCycle() {
         const proxy = { v: baseIntensity };
         const setLight = () => {
@@ -50,9 +55,10 @@ function createFlicker(lamp) {
             applyVariant(lamp, VARIANTS.off);
             if (gsap.ticker.time >= endTime) {
               applyVariant(lamp, cfg.baseVariant);
+              resolve();
               return;
             }
-            const delay = cfg.repeatDelay + Math.random() * 0.8;
+            const delay = cfg.repeatDelay + Math.random() * 0.2;
             pendingCall = gsap.delayedCall(delay, runCycle);
           },
         });
@@ -64,7 +70,9 @@ function createFlicker(lamp) {
           .to(proxy, { v: baseIntensity, duration: 0.2, onUpdate: setLight });
       }
 
-      runCycle();
+      const initialDelay = Math.random() * cfg.repeatDelay;
+      pendingCall = gsap.delayedCall(initialDelay, runCycle);
+      return promise;
     },
   };
 }
