@@ -32,12 +32,18 @@ function createFlicker(lamp) {
       killAll();
 
       const baseIntensity = cfg.baseVariant.light.intensity ?? 1;
+      const CYCLE_DURATION = 0.46; // sum of all tween durations
       const endTime = gsap.ticker.time + duration;
 
       let resolve;
       const promise = new Promise((res) => {
         resolve = res;
       });
+
+      function finish() {
+        applyVariant(lamp, cfg.baseVariant);
+        resolve();
+      }
 
       function runCycle() {
         const proxy = { v: baseIntensity };
@@ -53,13 +59,13 @@ function createFlicker(lamp) {
         tl = gsap.timeline({
           onComplete() {
             applyVariant(lamp, VARIANTS.off);
-            if (gsap.ticker.time >= endTime) {
-              applyVariant(lamp, cfg.baseVariant);
-              resolve();
+            const remaining = endTime - gsap.ticker.time;
+            const nextDelay = cfg.repeatDelay + Math.random() * 0.2;
+            if (remaining < nextDelay + CYCLE_DURATION) {
+              pendingCall = gsap.delayedCall(Math.max(0, remaining), finish);
               return;
             }
-            const delay = cfg.repeatDelay + Math.random() * 0.2;
-            pendingCall = gsap.delayedCall(delay, runCycle);
+            pendingCall = gsap.delayedCall(nextDelay, runCycle);
           },
         });
         tl.to(proxy, { v: 0.1, duration: 0.05, onUpdate: setLight })
@@ -70,7 +76,9 @@ function createFlicker(lamp) {
           .to(proxy, { v: baseIntensity, duration: 0.2, onUpdate: setLight });
       }
 
-      const initialDelay = Math.random() * cfg.repeatDelay;
+      const initialDelay =
+        Math.random() *
+        Math.min(cfg.repeatDelay, Math.max(0, duration - CYCLE_DURATION));
       pendingCall = gsap.delayedCall(initialDelay, runCycle);
       return promise;
     },
