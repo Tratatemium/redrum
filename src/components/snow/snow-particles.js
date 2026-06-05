@@ -1,5 +1,8 @@
 import AFRAME from "aframe";
 
+// Cap frame delta to avoid large position jumps after tab switches / stalls
+const MAX_DELTA_MS = 50;
+
 AFRAME.registerComponent("snow-particles", {
   schema: {
     count: { type: "int", default: 5000 },
@@ -8,13 +11,13 @@ AFRAME.registerComponent("snow-particles", {
     size: { type: "number", default: 0.15 },
     color: { type: "color", default: "#ffffff" },
     opacity: { type: "number", default: 0.8 },
-    windStrength: { type: "number", default: 0.4 }, // max wind speed units/s
-    windVariance: { type: "number", default: 0.15 }, // how fast wind changes
+    windStrength: { type: "number", default: 0.4 }, // max wind speed (units/s)
+    windVariance: { type: "number", default: 0.15 }, // per-flake sway amplitude
     renderOrder: { type: "int", default: 999 },
   },
 
   init() {
-    const { count, spread, size, color, opacity } = this.data;
+    const { count, spread, size, color, opacity, renderOrder } = this.data;
     const THREE = AFRAME.THREE;
 
     const positions = new Float32Array(count * 3);
@@ -36,12 +39,10 @@ AFRAME.registerComponent("snow-particles", {
     });
 
     this.points = new THREE.Points(geometry, material);
-    this.points.renderOrder = this.data.renderOrder;
+    this.points.renderOrder = renderOrder;
     this.el.object3D.add(this.points);
 
-    this._spread = spread;
-
-    // per-flake random phase offsets so they don't all drift identically
+    // Per-flake random phase offsets so they don't all sway identically
     this._phaseX = new Float32Array(count);
     this._phaseZ = new Float32Array(count);
     for (let i = 0; i < count; i++) {
@@ -49,56 +50,66 @@ AFRAME.registerComponent("snow-particles", {
       this._phaseZ[i] = Math.random() * Math.PI * 2;
     }
 
-    // slowly drifting global wind direction (updated via Perlin-like noise)
-    this._windX = 0;
-    this._windZ = 0;
-    this._windTargetX = (Math.random() - 0.5) * 2;
-    this._windTargetZ = (Math.random() - 0.5) * 2;
-    this._windTimer = 0;
-    this._windChangePeriod = 3 + Math.random() * 4; // seconds between wind shifts
+    // Global wind state — direction drifts slowly between random targets
+    this._wind = {
+      x: 0,
+      z: 0,
+      targetX: (Math.random() - 0.5) * 2,
+      targetZ: (Math.random() - 0.5) * 2,
+      timer: 0,
+      period: 3 + Math.random() * 4, // seconds between direction shifts
+    };
+
     this._time = 0;
+  },
+
+  // Smoothly interpolate global wind direction toward its current target,
+  // then pick a new target once the period expires.
+  _tickWind(dt) {
+    const w = this._wind;
+    w.timer += dt;
+    const lerpT = Math.min(w.timer / w.period, 1) * 0.02;
+    w.x += (w.targetX - w.x) * lerpT;
+    w.z += (w.targetZ - w.z) * lerpT;
+
+    if (w.timer >= w.period) {
+      w.targetX = (Math.random() - 0.5) * 2;
+      w.targetZ = (Math.random() - 0.5) * 2;
+      w.timer = 0;
+      w.period = 3 + Math.random() * 4;
+    }
   },
 
   tick(_, delta) {
     if (!this.points) return;
-    const dt = Math.min(delta, 50) / 1000;
-    const pos = this.points.geometry.attributes.position;
-    const fallSpeed = this.data.speed;
-    const { x: sx, y: sy, z: sz } = this._spread;
-    const ws = this.data.windStrength;
-    const wv = this.data.windVariance;
 
-    // smoothly interpolate global wind toward target
-    this._windTimer += dt;
+    const dt = Math.min(delta, MAX_DELTA_MS) / 1000;
     this._time += dt;
-    const t = Math.min(this._windTimer / this._windChangePeriod, 1);
-    this._windX += (this._windTargetX - this._windX) * t * 0.02;
-    this._windZ += (this._windTargetZ - this._windZ) * t * 0.02;
-    if (this._windTimer >= this._windChangePeriod) {
-      this._windTargetX = (Math.random() - 0.5) * 2;
-      this._windTargetZ = (Math.random() - 0.5) * 2;
-      this._windTimer = 0;
-      this._windChangePeriod = 3 + Math.random() * 4;
-    }
+    this._tickWind(dt);
+
+    const pos = this.points.geometry.attributes.position;
+    const { speed: fallSpeed, windStrength: ws, windVariance: wv } = this.data;
+    const { x: sx, y: sy, z: sz } = this.data.spread;
+    const { x: windX, z: windZ } = this._wind;
 
     for (let i = 0; i < pos.count; i++) {
-      // gentle per-flake sway using sine waves
+      // Gentle per-flake sway using sine waves
       const swayX = Math.sin(this._time * 0.8 + this._phaseX[i]) * wv;
       const swayZ = Math.cos(this._time * 0.6 + this._phaseZ[i]) * wv;
 
-      pos.array[i * 3] += (this._windX * ws + swayX) * dt;
+      pos.array[i * 3] += (windX * ws + swayX) * dt;
       pos.array[i * 3 + 1] -= fallSpeed * dt;
-      pos.array[i * 3 + 2] += (this._windZ * ws + swayZ) * dt;
+      pos.array[i * 3 + 2] += (windZ * ws + swayZ) * dt;
 
-      // wrap X within bounds
+      // Wrap X within spread bounds
       if (pos.array[i * 3] > sx * 0.5) pos.array[i * 3] -= sx;
       else if (pos.array[i * 3] < -sx * 0.5) pos.array[i * 3] += sx;
 
-      // wrap Z within bounds
+      // Wrap Z within spread bounds
       if (pos.array[i * 3 + 2] > sz * 0.5) pos.array[i * 3 + 2] -= sz;
       else if (pos.array[i * 3 + 2] < -sz * 0.5) pos.array[i * 3 + 2] += sz;
 
-      // wrap snowflake back to top when it falls below origin
+      // Reset to top of volume when flake falls below it
       if (pos.array[i * 3 + 1] < -sy * 0.5) {
         pos.array[i * 3 + 1] = sy * 0.5;
         pos.array[i * 3] = (Math.random() - 0.5) * sx;
