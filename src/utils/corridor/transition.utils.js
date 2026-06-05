@@ -6,6 +6,7 @@ function wait(s) {
 
 function setupTransition(component) {
   component._flickers = new Map();
+  component.twins = document.querySelector("#twin-ghosts");
   const lamps = document.querySelectorAll("[lamp]");
   lamps.forEach((lampEl) => {
     const lampComp = lampEl.components["lamp"];
@@ -32,10 +33,12 @@ function lightsOn(component) {
 async function doFirstTransition(component) {
   await flickerLights(component, 2);
   lightsOff(component);
-  await wait(3);
+  await wait(2);
   lightsOn(component);
+  component.twins.setAttribute("visible", true);
   await wait(3);
   await flickerLights(component, 2);
+  component.twins.setAttribute("visible", false);
 }
 
 export { setupTransition, doFirstTransition };

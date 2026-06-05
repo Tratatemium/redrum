@@ -26,7 +26,7 @@ const VARIANTS = {
     },
   },
   off: {
-    hex: 0xffffaa,
+    hex: 0x2a2a02,
     emissiveIntensity: 0,
     light: { color: "#8A8568", intensity: 0 },
   },
