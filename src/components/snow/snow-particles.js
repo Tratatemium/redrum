@@ -10,6 +10,7 @@ AFRAME.registerComponent("snow-particles", {
     opacity: { type: "number", default: 0.8 },
     windStrength: { type: "number", default: 0.4 }, // max wind speed units/s
     windVariance: { type: "number", default: 0.15 }, // how fast wind changes
+    renderOrder: { type: "int", default: 999 },
   },
 
   init() {
@@ -35,6 +36,7 @@ AFRAME.registerComponent("snow-particles", {
     });
 
     this.points = new THREE.Points(geometry, material);
+    this.points.renderOrder = this.data.renderOrder;
     this.el.object3D.add(this.points);
 
     this._spread = spread;
