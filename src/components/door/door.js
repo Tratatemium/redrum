@@ -41,10 +41,10 @@ AFRAME.registerComponent("door", {
 
     this.el.addEventListener("click", () => {
       if (!this.door) return;
-      if (this.data.isLocked) {
-        this.el.components["sound__locked"].playSound();
-        return;
-      }
+      // if (this.data.isLocked) {
+      //   this.el.components["sound__locked"].playSound();
+      //   return;
+      // }
       if (!this.isOpen) this.el.components["sound__open"].playSound();
       else this.el.components["sound__close"].playSound();
 
