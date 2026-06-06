@@ -29,12 +29,15 @@
       <audio id="door-close" src="/audio/door/door_close.mp3" preload="auto"></audio>
       <audio id="stone1" src="/audio/stone/stone1.mp3" preload="auto"></audio>
       <audio id="stone2" src="/audio/stone/stone2.mp3" preload="auto"></audio>
+      <audio id="footsteps" src="/audio/footsteps.mp3" loop preload="auto"></audio>
+
 
       <img id="sky" src="sky_01.png">
     </a-assets>
 
     <!-- PLAYER -->
-    <a-entity id="player-rig" position="1 0 1.5" rotation="0 -90 0" movement-controls="constrainToNavMesh: true">
+    <a-entity id="player-rig" position="1 0 1.5" rotation="0 -90 0" movement-controls="constrainToNavMesh: true"
+      footstep-sounds>
       <a-entity camera look-controls position="0 1.6 0" player-collision>
         <a-cursor raycaster="objects: .clickable" cursor="rayOrigin: mouse; fuse: false"></a-cursor>
       </a-entity>
