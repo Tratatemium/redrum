@@ -47,6 +47,7 @@ function applyVariant(lamp, variant) {
   if (lamp.lightEl) {
     lamp.lightEl.setAttribute("light", { ...variant.light, intensity });
   }
+  lamp.el.emit("lamp-updated");
 }
 
 function handleVariants(lamp) {

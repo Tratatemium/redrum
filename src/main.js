@@ -1,6 +1,7 @@
 import AFRAME from "aframe";
 import "aframe-extras";
 
+import "./components/loading";
 import "./components/player/player-screen";
 import "./components/player/player-collision";
 

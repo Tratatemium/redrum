@@ -56,9 +56,9 @@ AFRAME.registerComponent("player-screen", {
       shader: "flat",
       color,
       opacity,
-      transparent: opacity < 1,
-      depthWrite: opacity >= 1,
-      depthTest: opacity >= 1,
+      transparent: true,
+      depthWrite: false,
+      depthTest: false,
     };
     if (src) mat.src = src;
     this.el.setAttribute("material", mat);
@@ -66,13 +66,21 @@ AFRAME.registerComponent("player-screen", {
   },
 
   _setOpacity(value) {
-    const transparent = value < 1;
-    this.el.setAttribute("material", {
-      opacity: value,
-      transparent,
-      depthWrite: !transparent,
-      depthTest: !transparent,
-    });
+    const mesh = this.el.getObject3D("mesh");
+    if (mesh) {
+      mesh.traverse((node) => {
+        if (!node.isMesh) return;
+        const mats = Array.isArray(node.material)
+          ? node.material
+          : [node.material];
+        mats.forEach((m) => {
+          m.opacity = value;
+          m.transparent = true;
+          m.depthWrite = false;
+          m.needsUpdate = true;
+        });
+      });
+    }
     this._proxy.opacity = value;
   },
 
