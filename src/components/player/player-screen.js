@@ -36,6 +36,7 @@ AFRAME.registerComponent("player-screen", {
   init() {
     this._proxy = { opacity: this.data.opacity };
     this._applyMaterial();
+    this.el.addEventListener("object3dset", () => this._enforceRenderOrder());
   },
 
   update(oldData) {
@@ -50,12 +51,20 @@ AFRAME.registerComponent("player-screen", {
 
   // ─── internal helpers ────────────────────────────────────────────────────
 
+  _enforceRenderOrder() {
+    this._eachMaterial((m) => {
+      m.depthTest = false;
+      m.depthWrite = false;
+      m.needsUpdate = true;
+    });
+  },
+
   _eachMaterial(fn) {
     const mesh = this.el.getObject3D("mesh");
     if (!mesh) return;
     mesh.traverse((node) => {
       if (!node.isMesh) return;
-      node.renderOrder = 999;
+      node.renderOrder = 99999;
       const mats = Array.isArray(node.material)
         ? node.material
         : [node.material];
@@ -103,10 +112,12 @@ AFRAME.registerComponent("player-screen", {
 
   // ─── public API ──────────────────────────────────────────────────────────
 
-  /** Fade to a solid color (optionally animate via opacity dip) */
-  async setColor(color, duration) {
-    duration ??= this.data.duration;
+  /** Fade to a solid color */
+  setColor(color, duration) {
     this.el.setAttribute("player-screen", "color", color);
+    return new Promise((resolve) =>
+      this.el.addEventListener("object3dset", resolve, { once: true }),
+    );
   },
 
   /** Apply a texture src (asset selector like '#my-img' or a URL) */

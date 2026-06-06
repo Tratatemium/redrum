@@ -36,13 +36,15 @@
       <audio id="freezing" src="/audio/transition/freezing.mp3" preload="auto"></audio>
 
       <img id="sky" src="sky_01.png">
+      <img id="loading-screen" src="loading.png">
     </a-assets>
 
     <!-- PLAYER -->
     <a-entity id="player-rig" position="1 0 1.5" rotation="0 -90 0" movement-controls="constrainToNavMesh: true">
       <a-entity camera look-controls position="0 1.6 0" player-collision>
         <a-cursor raycaster="objects: .clickable" cursor="rayOrigin: mouse; fuse: false"></a-cursor>
-        <a-plane id="player-screen" position="0 0 -0.01" width="2" height="2" player-screen="color: #FFF; opacity: 1">
+        <a-plane id="player-screen" position="0 0 -0.5" width="2" height="2"
+          player-screen="color: #ffffff; opacity: 1; src: #loading-screen">
         </a-plane>
       </a-entity>
     </a-entity>

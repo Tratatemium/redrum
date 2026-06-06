@@ -13,9 +13,10 @@ AFRAME.registerComponent("loading", {
       }
     });
 
-    function onEverythingReady() {
+    async function onEverythingReady() {
       console.log("All lamps applied their variant — scene is ready");
-      screen.components["player-screen"].hide(0.3);
+      await screen.components["player-screen"].hide(0.6);
+      screen.components["player-screen"].clearTexture(0);
     }
   },
 });
