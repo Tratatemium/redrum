@@ -66,6 +66,7 @@ async function doFirstTransition(component) {
   lightsOff(component);
   playSound("drop-to-dark");
   await wait(0.5);
+  lightsOn(component);
 }
 
 export { setupTransition, doFirstTransition };
