@@ -9,8 +9,9 @@
 
         <!-- DOORS -->
         <a-entity id="door-1" door="lamp: #wall-lamp-1" door-variants position="6 0 3" rotation="0 180 0"></a-entity>
-        <a-entity id="door-2" door="lamp: #wall-lamp-2" door-variants position="9 0 0"></a-entity>
-        <a-entity id="door-3" door="lamp: #wall-lamp-3" door-variants position="18 0 0" rotation="0 -90 0"></a-entity>
+        <a-entity id="door-2" door="lamp: #wall-lamp-2; isLocked: true" door-variants position="9 0 0"></a-entity>
+        <a-entity id="door-3" door="lamp: #wall-lamp-3; isLocked: true" door-variants position="18 0 0"
+            rotation="0 -90 0"></a-entity>
         <a-plane id="door-3-cover" width="2" heigth="3" position="18.1 1 1.5" rotation="0 -90 90"
             color="#000000"></a-plane>
 

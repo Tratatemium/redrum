@@ -22,6 +22,8 @@ AFRAME.registerComponent("door-variants", {
       },
     };
 
+    updateLampColor(this.el.components["door"]);
+
     this.el.addEventListener("model-loaded", () => {
       this.door = this.el.object3D.getObjectByName("Door_M");
       this.frame = this.el.object3D.getObjectByName("Frame");

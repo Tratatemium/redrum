@@ -34,7 +34,6 @@ function setupTransition(component) {
     const flicker = createFlicker(lampComp);
     component._flickers.set(lampEl, flicker);
   });
-  console.log(component._flickers);
 }
 
 function flickerLights(component, s) {
