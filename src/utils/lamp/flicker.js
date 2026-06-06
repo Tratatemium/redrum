@@ -2,9 +2,11 @@ import gsap from "gsap";
 import { VARIANTS, applyVariant } from "./lamp-variants";
 
 function createFlicker(lamp) {
+  function getBaseVariant() {
+    return VARIANTS[lamp.el.components["lamp"].data.variant] ?? VARIANTS.normal;
+  }
+
   const cfg = {
-    baseVariant:
-      VARIANTS[lamp.el.components["lamp"].data.variant] ?? VARIANTS.normal,
     repeatDelay: 0.4,
   };
 
@@ -21,7 +23,7 @@ function createFlicker(lamp) {
   return {
     normal() {
       killAll();
-      applyVariant(lamp, cfg.baseVariant);
+      applyVariant(lamp, getBaseVariant());
     },
     off() {
       killAll();
@@ -30,8 +32,8 @@ function createFlicker(lamp) {
 
     flicker(duration = 5) {
       killAll();
-
-      const baseIntensity = cfg.baseVariant.light.intensity ?? 1;
+      const baseVariant = getBaseVariant();
+      const baseIntensity = baseVariant.light.intensity ?? 1;
       const CYCLE_DURATION = 0.46; // sum of all tween durations
       const endTime = gsap.ticker.time + duration;
 
@@ -41,7 +43,7 @@ function createFlicker(lamp) {
       });
 
       function finish() {
-        applyVariant(lamp, cfg.baseVariant);
+        applyVariant(lamp, baseVariant);
         resolve();
       }
 
@@ -50,9 +52,9 @@ function createFlicker(lamp) {
         const setLight = () => {
           const ratio = baseIntensity > 0 ? proxy.v / baseIntensity : 0;
           applyVariant(lamp, {
-            ...cfg.baseVariant,
-            emissiveIntensity: cfg.baseVariant.emissiveIntensity * ratio,
-            light: { ...cfg.baseVariant.light, intensity: proxy.v },
+            ...baseVariant,
+            emissiveIntensity: baseVariant.emissiveIntensity * ratio,
+            light: { ...baseVariant.light, intensity: proxy.v },
           });
         };
 
