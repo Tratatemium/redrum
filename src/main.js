@@ -19,3 +19,5 @@ import "./components/corridor/corridor-transition";
 import "./components/corridor/redrum";
 import "./components/corridor/state-button";
 import "./components/corridor/event-button";
+
+import "./components/player/footstep-sounds";
