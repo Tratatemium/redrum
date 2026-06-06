@@ -13,8 +13,7 @@ AFRAME.registerComponent("corridor-transition", {
       box_1_triggered: false,
       box_2_triggered: false,
     };
-    const corridor = document.querySelector("[corridor-state]");
-    if (!corridor) return;
+
     const door2 = document.querySelector("#door-2");
     const door3 = document.querySelector("#door-3");
     const trigger1 = document.querySelector("#trigger-puzzle-1");
@@ -37,7 +36,6 @@ AFRAME.registerComponent("corridor-transition", {
           if (this.state.puzzle_1_solved && !this.state.box_1_triggered) {
             this.state.box_1_triggered = true;
             await doFirstTransition(this);
-            corridor.components["corridor-state"].setState("decayed");
             door2.setAttribute("door", "isLocked", false);
           }
           break;
@@ -47,7 +45,6 @@ AFRAME.registerComponent("corridor-transition", {
           if (this.state.puzzle_2_solved && !this.state.box_2_triggered) {
             this.state.box_2_triggered = true;
             await doSecondTransition(this);
-            corridor.components["corridor-state"].setState("frosted");
             door3.setAttribute("door", "isLocked", false);
             door3cover.setAttribute("visible", false);
           }

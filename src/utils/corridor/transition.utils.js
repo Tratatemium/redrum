@@ -36,6 +36,7 @@ function setupTransition(component) {
   });
   component.rig = document.querySelector("#player-rig");
   component.screen = document.querySelector("#player-screen");
+  component.corridor = document.querySelector("[corridor-state]");
 }
 
 function flickerLights(component, s) {
@@ -67,17 +68,23 @@ async function doFirstTransition(component) {
   lightsOff(component);
   playSound("drop-to-dark");
   await wait(0.5);
-  lightsOn(component);
+  component.corridor.components["corridor-state"].setState("decayed");
 }
 
 async function doSecondTransition(component) {
   await flickerLights(component, 2);
   lightsOn(component);
   component.rig.setAttribute("movement-controls", "enabled", false);
+  playSound("freezing");
+  component.screen.components["player-screen"].setColor("#EAF6FF", 0);
+  component.screen.components["player-screen"].show(0.4);
   await component.screen.components["player-screen"].show(0.4);
   await wait(2);
   component.rig.setAttribute("movement-controls", "enabled", true);
   component.screen.components["player-screen"].hide(0.4);
+  component.screen.components["player-screen"].setColor("#ffffff", 0);
+  component.corridor.components["corridor-state"].setState("frosted");
+  await flickerLights(component, 1);
 }
 
 export { setupTransition, doFirstTransition, doSecondTransition };
