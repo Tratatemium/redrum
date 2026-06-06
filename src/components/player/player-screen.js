@@ -36,10 +36,6 @@ AFRAME.registerComponent("player-screen", {
   init() {
     this._proxy = { opacity: this.data.opacity };
     this._applyMaterial();
-    this.el.addEventListener("object3dset", () => {
-      const mesh = this.el.getObject3D("mesh");
-      if (mesh) mesh.renderOrder = 999;
-    });
   },
 
   update(oldData) {
@@ -53,6 +49,19 @@ AFRAME.registerComponent("player-screen", {
   },
 
   // ─── internal helpers ────────────────────────────────────────────────────
+
+  _eachMaterial(fn) {
+    const mesh = this.el.getObject3D("mesh");
+    if (!mesh) return;
+    mesh.traverse((node) => {
+      if (!node.isMesh) return;
+      node.renderOrder = 999;
+      const mats = Array.isArray(node.material)
+        ? node.material
+        : [node.material];
+      mats.forEach(fn);
+    });
+  },
 
   _applyMaterial() {
     const { color, src, opacity } = this.data;
@@ -70,23 +79,13 @@ AFRAME.registerComponent("player-screen", {
   },
 
   _setOpacity(value) {
-    const mesh = this.el.getObject3D("mesh");
-    if (mesh) {
-      mesh.traverse((node) => {
-        if (!node.isMesh) return;
-        node.renderOrder = 999;
-        const mats = Array.isArray(node.material)
-          ? node.material
-          : [node.material];
-        mats.forEach((m) => {
-          m.opacity = value;
-          m.transparent = true;
-          m.depthTest = false;
-          m.depthWrite = false;
-          m.needsUpdate = true;
-        });
-      });
-    }
+    this._eachMaterial((m) => {
+      m.opacity = value;
+      m.transparent = true;
+      m.depthTest = false;
+      m.depthWrite = false;
+      m.needsUpdate = true;
+    });
     this._proxy.opacity = value;
   },
 
