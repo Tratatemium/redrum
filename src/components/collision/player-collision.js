@@ -5,10 +5,12 @@ AFRAME.registerComponent("player-collision", {
     this.lastPos = new THREE.Vector3();
     this.worldPos = new THREE.Vector3();
     this.playerSize = new THREE.Vector3(0.3, 1.6, 0.3);
+    this.activeTriggers = new Set();
   },
 
   tick() {
     this.walls = document.querySelectorAll(".collision");
+    this.triggers = document.querySelectorAll(".trigger-box");
 
     const player = this.el.object3D;
     const rig = this.el.parentEl.object3D;
@@ -51,6 +53,18 @@ AFRAME.registerComponent("player-collision", {
 
     if (!collided) {
       this.lastPos.copy(rig.position);
+    }
+
+    for (const trigger of this.triggers) {
+      this.tempBox.setFromObject(trigger.object3D);
+      const inside = this.playerBox.intersectsBox(this.tempBox);
+      const id = trigger.id;
+      if (inside && !this.activeTriggers.has(id)) {
+        this.activeTriggers.add(id);
+        this.el.emit("trigger-enter", { id }, true);
+      } else if (!inside && this.activeTriggers.has(id)) {
+        this.activeTriggers.delete(id);
+      }
     }
   },
 });

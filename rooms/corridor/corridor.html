@@ -4,6 +4,10 @@
     <a-entity gltf-model="#corridor" position="0 0 0" scale="1 1 1" corridor-textures corridor-state
         corridor-transition>
 
+        <!-- TRIGGERS -->
+        <a-box id="trigger-puzzle-1" class="trigger-box" width="3" height="3" depth="0.1" position="5.6 1.5 1.5"
+            rotation="0 -90 0" visible="true"></a-box>
+
         <!-- TWINS -->
         <a-entity id="twin-ghosts" gltf-model="#twins" position="14.5 0 1.5" scale="1 1 1" visible="false"></a-entity>
 
@@ -12,7 +16,7 @@
         <a-entity id="door-2" door="lamp: #wall-lamp-2; isLocked: true" door-variants position="9 0 0"></a-entity>
         <a-entity id="door-3" door="lamp: #wall-lamp-3; isLocked: true" door-variants position="18 0 0"
             rotation="0 -90 0"></a-entity>
-        <a-plane id="door-3-cover" width="2" heigth="3" position="18.1 1 1.5" rotation="0 -90 90"
+        <a-plane id="door-3-cover" width="2" height="3" position="18.1 1 1.5" rotation="0 -90 90"
             color="#000000"></a-plane>
 
         <!-- CEILING LAMPS -->
