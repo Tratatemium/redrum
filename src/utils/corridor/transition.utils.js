@@ -63,12 +63,10 @@ async function doFirstTransition(component) {
   component.twins.setAttribute("visible", true);
   playSound("reverse-breath");
   await wait(3);
-  await flickerLights(component, 2);
+  await flickerLights(component, 1);
   component.twins.setAttribute("visible", false);
-  lightsOff(component);
-  playSound("drop-to-dark");
-  await wait(0.5);
   component.corridor.components["corridor-state"].setState("decayed");
+  await flickerLights(component, 1);
 }
 
 async function doSecondTransition(component) {
