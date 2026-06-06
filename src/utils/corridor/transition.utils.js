@@ -34,6 +34,8 @@ function setupTransition(component) {
     const flicker = createFlicker(lampComp);
     component._flickers.set(lampEl, flicker);
   });
+  component.rig = document.querySelector("#player-rig");
+  component.screen = document.querySelector("#player-screen");
 }
 
 function flickerLights(component, s) {
@@ -68,4 +70,14 @@ async function doFirstTransition(component) {
   lightsOn(component);
 }
 
-export { setupTransition, doFirstTransition };
+async function doSecondTransition(component) {
+  await flickerLights(component, 2);
+  lightsOn(component);
+  component.rig.setAttribute("movement-controls", "enabled", false);
+  await component.screen.components["player-screen"].show(0.4);
+  await wait(2);
+  component.rig.setAttribute("movement-controls", "enabled", true);
+  component.screen.components["player-screen"].hide(0.4);
+}
+
+export { setupTransition, doFirstTransition, doSecondTransition };

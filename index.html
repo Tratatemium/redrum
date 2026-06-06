@@ -41,6 +41,9 @@
     <a-entity id="player-rig" position="1 0 1.5" rotation="0 -90 0" movement-controls="constrainToNavMesh: true">
       <a-entity camera look-controls position="0 1.6 0" player-collision>
         <a-cursor raycaster="objects: .clickable" cursor="rayOrigin: mouse; fuse: false"></a-cursor>
+        <a-plane id="player-screen" position="0 0 -0.01" width="2" height="2"
+          player-screen="color: #FFF; opacity: 0; duration: 0.6">
+        </a-plane>
       </a-entity>
     </a-entity>
 
