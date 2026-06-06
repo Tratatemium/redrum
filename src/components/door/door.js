@@ -59,4 +59,13 @@ AFRAME.registerComponent("door", {
       });
     });
   },
+
+  update(oldData) {
+    if (
+      oldData.isLocked !== undefined &&
+      oldData.isLocked !== this.data.isLocked
+    ) {
+      updateLampColor(this);
+    }
+  },
 });
