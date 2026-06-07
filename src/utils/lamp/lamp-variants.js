@@ -26,7 +26,7 @@ const VARIANTS = {
     },
   },
   off: {
-    hex: 0xffffaa,
+    hex: 0x2a2a02,
     emissiveIntensity: 0,
     light: { color: "#8A8568", intensity: 0 },
   },
@@ -47,6 +47,7 @@ function applyVariant(lamp, variant) {
   if (lamp.lightEl) {
     lamp.lightEl.setAttribute("light", { ...variant.light, intensity });
   }
+  lamp.el.emit("lamp-updated");
 }
 
 function handleVariants(lamp) {

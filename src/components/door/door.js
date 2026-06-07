@@ -4,6 +4,7 @@ import { updateLampColor } from "../../utils/door/door-lamp";
 AFRAME.registerComponent("door", {
   schema: {
     lamp: { type: "selector" },
+    isLocked: { type: "boolean", default: false },
   },
 
   init() {
@@ -24,6 +25,13 @@ AFRAME.registerComponent("door", {
       rolloffFactor: 2,
     });
 
+    this.el.setAttribute("sound__locked", {
+      src: "#door-locked",
+      volume: 1,
+      positional: true,
+      rolloffFactor: 2,
+    });
+
     this.isOpen = false;
     updateLampColor(this);
 
@@ -33,6 +41,10 @@ AFRAME.registerComponent("door", {
 
     this.el.addEventListener("click", () => {
       if (!this.door) return;
+      // if (this.data.isLocked) {
+      //   this.el.components["sound__locked"].playSound();
+      //   return;
+      // }
       if (!this.isOpen) this.el.components["sound__open"].playSound();
       else this.el.components["sound__close"].playSound();
 
@@ -46,5 +58,14 @@ AFRAME.registerComponent("door", {
         ease: "power2.out",
       });
     });
+  },
+
+  update(oldData) {
+    if (
+      oldData.isLocked !== undefined &&
+      oldData.isLocked !== this.data.isLocked
+    ) {
+      updateLampColor(this);
+    }
   },
 });
