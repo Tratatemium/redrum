@@ -1,9 +1,11 @@
 import AFRAME from "aframe";
 import "aframe-extras";
 
-import "./components/loading";
+import "./components/general/loading";
+import "./components/general/sound-manager";
 import "./components/player/player-screen";
 import "./components/player/player-collision";
+import "./components/player/footstep-sounds";
 
 import "./components/snow/snow-particles";
 
@@ -19,5 +21,3 @@ import "./components/corridor/corridor-transition";
 import "./components/corridor/redrum";
 import "./components/corridor/state-button";
 import "./components/corridor/event-button";
-
-import "./components/player/footstep-sounds";
