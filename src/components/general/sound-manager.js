@@ -8,9 +8,24 @@ AFRAME.registerComponent("sound-manager", {
 
   init() {
     window.SoundManager = this;
+    this.audioMap = {};
+    const audioEl = document.querySelector("#audio");
+
+    document.querySelectorAll("a-assets audio").forEach((el) => {
+      const soundId = el.id;
+      const emitterId = `${soundId}_emitter`;
+      const emitterEl = document.createElement("a-entity");
+      emitterEl.id = emitterId;
+      emitterEl.setAttribute("sound", {
+        src: `#${soundId}`,
+      });
+      audioEl.appendChild(emitterEl);
+
+      this.audioMap[soundId] = emitterEl;
+    });
   },
 
-  playOn(soundId, targetEl, options = {}) {
+  playSoundOn(soundId, targetEl, options = {}) {
     const compName = `sound__${soundId}`;
     targetEl.setAttribute(compName, {
       src: `#${soundId}`,
@@ -20,8 +35,18 @@ AFRAME.registerComponent("sound-manager", {
     targetEl.components[compName].playSound();
   },
 
-  stopOn(soundId, targetEl) {
+  stopSoundOn(soundId, targetEl) {
     targetEl.components[`sound__${soundId}`]?.stopSound();
+  },
+
+  playSound(soundId) {
+    const emitterEl = this.audioMap[soundId];
+    emitterEl?.components.sound.playSound();
+  },
+
+  stopSound(soundId) {
+    const emitterEl = this.audioMap[soundId];
+    emitterEl?.components.sound.stopSound();
   },
 
   // --- internals ---
