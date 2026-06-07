@@ -37,10 +37,12 @@ AFRAME.registerComponent("sound-manager", {
     },
   ) {
     const compName = `sound__${soundId}`;
+    const volume = this._effectiveVolume(options.volume ?? 1, soundId);
     targetEl.setAttribute(compName, {
       src: `#${soundId}`,
       positional: true,
       ...options,
+      volume,
     });
     targetEl.components[compName].playSound();
   },
@@ -53,9 +55,12 @@ AFRAME.registerComponent("sound-manager", {
     targetEl.components[`sound__${soundId}`]?.stopSound();
   },
 
-  playSound(soundId) {
+  playSound(soundId, options = { volume: 1 }) {
     const emitterEl = this.audioMap[soundId];
-    emitterEl?.components.sound.playSound();
+    if (!emitterEl) return;
+    const volume = this._effectiveVolume(options.volume ?? 1, soundId);
+    emitterEl.setAttribute("sound", { ...options, volume });
+    emitterEl.components.sound.playSound();
   },
 
   isPlaying(soundId) {
@@ -70,10 +75,10 @@ AFRAME.registerComponent("sound-manager", {
 
   // --- internals ---
 
-  _effectiveVolume(volume, type) {
+  _effectiveVolume(volume, soundId) {
     if (this.data.muted) return 0;
-    return type === "sfx"
-      ? volume * this.data.masterVolume * this.data.sfxVolume
-      : volume * this.data.masterVolume * this.data.musicVolume;
+    return soundId.startsWith("music_")
+      ? volume * this.data.masterVolume * this.data.musicVolume
+      : volume * this.data.masterVolume * this.data.sfxVolume;
   },
 });
