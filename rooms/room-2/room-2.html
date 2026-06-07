@@ -1,22 +1,26 @@
 <a-entity id="room-2-group">
 
     <!-- CEILING LAMPS -->
-    <a-entity lamp="type: ceiling; variant: normal" position="2.5 3 1.5"></a-entity>
-    <a-entity lamp="type: ceiling; variant: normal" position="8 3 1.5"></a-entity>
-    <a-entity lamp="type: ceiling; variant: normal" position="2.5 3 5"></a-entity>
-    <a-entity lamp="type: ceiling; variant: normal" position="8 3 5"></a-entity>
-    <a-entity id="statue-lamp" lamp="type: ceiling; variant: red" position="4.5 3 2.5"></a-entity>
+    <!-- <a-entity lamp="type: ceiling; variant: normal" position="-2 3 2"></a-entity>
+    <a-entity lamp="type: ceiling; variant: normal" position="2 3 -2"></a-entity>
+    <a-entity lamp="type: ceiling; variant: normal" position="2 3 2"></a-entity>
+    <a-entity lamp="type: ceiling; variant: normal" position="-2 3 -2"></a-entity> -->
+
+    <a-light type="ambient" color="#ddcea7" intensity="0.9"></a-light>
+    <a-entity light="type: spot; color: #feffa8; intensity: 5; castShadow: true; angle: 50; penumbra: 0.4; distance: 8; decay: 2" position="0.678 1.4 4" rotation="-90 0 0"></a-entity>
+
 
     <!-- STATUE -->
 
-    <a-entity id="statue" position="4.5 0 2.5" rotation="0 180 0">
-        <a-gltf-model position="0 0.9 0" src="#statue-head" sound="src: #stone2; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" rotation="0 45 0"></a-gltf-model>
-        <a-gltf-model position="0 0.9 0" src="#statue-torso" sound="src: #stone1; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" rotation="0 67.5 0"></a-gltf-model>
-        <a-gltf-model position="0 0.9 0" src="#statue-legs" sound="src: #stone2; on: click" rotate-on-click="target: 0" class="collision clickable puzzle-piece" rotation="0 90 0"></a-gltf-model>
+    <a-entity id="statue" target="#statue" position="0 -0.9 0" rotation="0 0 0">
+        <a-entity id="statue-lamp" lamp="type: chandelier; variant: red" position="0 1.5 0"></a-entity>
+        <a-gltf-model position="0 0.9 0" src="#statue-head" sound="src: #stone2; on: click" rotate-on-click="target: 90" class="collision clickable puzzle-piece" rotation="0 45 0"></a-gltf-model>
+        <a-gltf-model position="0 0.9 0" src="#statue-torso" sound="src: #stone1; on: click" rotate-on-click="target: 90" class="collision clickable puzzle-piece" rotation="0 -90 0"></a-gltf-model>
+        <a-gltf-model position="0 0.9 0" src="#statue-legs" sound="src: #stone2; on: click" rotate-on-click="target: 90" class="collision clickable puzzle-piece" rotation="0 -45 0"></a-gltf-model>
+        <a-gltf-model position="0 0.9 0" src="#statue-bottom" class="collision" rotation="0 90 0"></a-gltf-model>
     </a-entity>
 
-
-    <a-gltf-model position="0 0 0" src="#room-2"></a-gltf-model>
+    <a-gltf-model position="0 0 0" src="#room-2" shadow="receive: true"></a-gltf-model>
 </a-entity>
 
 <script type="module" src="./rooms/room-2/puzzle.js"></script>

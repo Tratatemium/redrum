@@ -44,21 +44,24 @@ function applyVariant(lamp, variant) {
     lamp.glassMaterial.emissive.setHex(variant.hex);
     lamp.glassMaterial.emissiveIntensity = variant.emissiveIntensity;
   }
-  if (lamp.lightEl) {
-    lamp.lightEl.setAttribute("light", { ...variant.light, intensity });
-  }
+
+  lamp.lightEls.forEach(lightEl => {
+    lightEl.setAttribute("light", { ...variant.light, intensity });
+  });
+
   lamp.el.emit("lamp-updated");
 }
 
 function handleVariants(lamp) {
   lamp.glassMaterial = null;
-  lamp.lightEl = null;
+  lamp.lightEls = [];
   lamp.baseIntensity = 1;
   lamp._variantIndex = Math.max(0, variantsKeys.indexOf(lamp.data.variant));
 
   lamp.el.addEventListener("model-loaded", () => {
     const mesh = lamp.el.getObject3D("mesh");
     if (!mesh) return;
+
     mesh.traverse((node) => {
       if (!node.isMesh) return;
       const materials = Array.isArray(node.material)
@@ -68,12 +71,12 @@ function handleVariants(lamp) {
       if (glass) lamp.glassMaterial = glass;
     });
 
-    lamp.lightEl = lamp.el.querySelector("a-light");
-    if (!lamp.lightEl) {
-      console.warn("lamp: No child a-light entity found!");
+    lamp.lightEls = [...lamp.el.querySelectorAll("a-light")];
+    if (lamp.lightEls.length === 0) {
+      console.warn("lamp: No child a-light entities found!");
     } else {
       lamp.baseIntensity =
-        lamp.lightEl.components?.light?.data?.intensity ?? lamp.baseIntensity;
+        lamp.lightEls[0].components?.light?.data?.intensity ?? lamp.baseIntensity;
     }
 
     applyVariant(lamp, VARIANTS[variantsKeys[lamp._variantIndex]]);
@@ -85,7 +88,7 @@ function handleVariants(lamp) {
   };
 
   lamp.el.addEventListener("click", () => {
-    if (!lamp.glassMaterial || !lamp.lightEl) return;
+    if (!lamp.glassMaterial || lamp.lightEls.length === 0) return;
 
     lamp._variantIndex = (lamp._variantIndex + 1) % variantsKeys.length;
     applyVariant(lamp, VARIANTS[variantsKeys[lamp._variantIndex]]);
