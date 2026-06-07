@@ -8,6 +8,8 @@ AFRAME.registerComponent("footstep-sounds", {
 
     this.normalSteps = document.querySelector("#footsteps-normal");
     this.snowSteps = document.querySelector("#footsteps-snow");
+    this.normalSteps.volume = 0.5;
+    this.snowSteps.volume = 0.5;
     this.maze = document.querySelector("#maze-entity");
   },
 
