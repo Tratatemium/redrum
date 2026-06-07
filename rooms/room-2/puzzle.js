@@ -18,7 +18,8 @@ AFRAME.registerComponent('rotate-on-click', {
   schema: {
     degrees: { default: 45 },
     axis:    { default: 'y' },
-    target:  { default: 90 }
+    target:  { default: 90 },
+    sound:   { default: '' }
   },
 
   init: function () {
@@ -27,6 +28,10 @@ AFRAME.registerComponent('rotate-on-click', {
     this.el.addEventListener('click', () => {
       if (solved || this.isAnimating) return;
       this.isAnimating = true;
+
+      if (this.data.sound) {
+        document.querySelector(this.data.sound).play();
+      }
 
       const currentRotation = this.el.object3D.rotation[this.data.axis];
       const targetRotation = currentRotation - THREE.MathUtils.degToRad(this.data.degrees);
@@ -51,6 +56,7 @@ AFRAME.registerComponent('rotate-on-click', {
             solved = true;
             console.log("solved");
             document.querySelector('#statue-lamp').setAttribute('lamp', 'variant: normal');
+            document.querySelector('#statue').components.sound.playSound();
           }
         }
       });
