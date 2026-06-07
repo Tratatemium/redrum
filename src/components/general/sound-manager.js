@@ -18,6 +18,7 @@ AFRAME.registerComponent("sound-manager", {
       emitterEl.id = emitterId;
       emitterEl.setAttribute("sound", {
         src: `#${soundId}`,
+        positional: false,
       });
       audioEl.appendChild(emitterEl);
 
@@ -35,6 +36,10 @@ AFRAME.registerComponent("sound-manager", {
     targetEl.components[compName].playSound();
   },
 
+  isPlayingOn(soundId, targetEl) {
+    targetEl.components[`sound__${soundId}`]?.isPlaying;
+  },
+
   stopSoundOn(soundId, targetEl) {
     targetEl.components[`sound__${soundId}`]?.stopSound();
   },
@@ -42,6 +47,11 @@ AFRAME.registerComponent("sound-manager", {
   playSound(soundId) {
     const emitterEl = this.audioMap[soundId];
     emitterEl?.components.sound.playSound();
+  },
+
+  isPlaying(soundId) {
+    const emitterEl = this.audioMap[soundId];
+    return emitterEl?.components.sound.isPlaying;
   },
 
   stopSound(soundId) {

@@ -67,4 +67,17 @@ AFRAME.registerComponent("player-collision", {
       }
     }
   },
+
+  isInsideEntity(entity) {
+    if (!entity || !entity.object3D) return false;
+    const box = new THREE.Box3().setFromObject(entity.object3D);
+    return this.playerBox.intersectsBox(box);
+  },
 });
+
+export function isInsideEntity(entity) {
+  const camera = document.querySelector("[player-collision]");
+  const collision = camera?.components["player-collision"];
+  if (!collision) return false;
+  return collision.isInsideEntity(entity);
+}
