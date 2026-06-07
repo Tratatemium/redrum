@@ -36,6 +36,7 @@
       <audio id="drop-to-dark" src="/audio/transition/drop_to_dark.mp3" preload="auto"></audio>
       <audio id="reverse-breath" src="/audio/transition/reverse_breath.mp3" preload="auto"></audio>
       <audio id="freezing" src="/audio/transition/freezing.mp3" preload="auto"></audio>
+      <audio id="bg-audio" src="/audio/bg-audio.mp3" preload="auto"></audio>
       <audio id="footsteps" src="/audio/footsteps.mp3" loop preload="auto"></audio>
       <audio id="heres-johnny" src="/audio/statue/heres-johnny.mp3" preload="auto"></audio>
 
@@ -53,6 +54,9 @@
         </a-plane>
       </a-entity>
     </a-entity>
+
+    <!-- BG AUDIO -->
+    <a-entity sound="src: #bg-audio; autoplay: true; loop: true; positional: false; volume: 0.2"></a-entity>
 
     <!-- NAVMESH -->
     <a-entity id="navmesh-entity" gltf-model="#navmesh" position="0 -0.001 0" nav-mesh></a-entity>
