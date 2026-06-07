@@ -1,4 +1,3 @@
-import { createLight } from "../../utils/lamp/create-light";
 import { setLampType } from "../../utils/lamp/lamp-types";
 import { handleVariants } from "../../utils/lamp/lamp-variants";
 
@@ -10,7 +9,6 @@ AFRAME.registerComponent("lamp", {
 
   init() {
     this.el.classList.add("clickable");
-    createLight(this);
     setLampType(this);
     handleVariants(this);
   },
