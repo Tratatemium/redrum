@@ -17,7 +17,7 @@ const LAMP_TYPES = {
     model: "#lamp-chandelier",
     class: "lamp-chandelier",
     lights: [
-      { pos: "-0.2 1.96 0.34",  attributes: { intensity: 1, distance: 6, decay: 2 } },
+      { pos: "-0.2 1.96 0.34",  attributes: { intensity: 1, distance: 6, decay: 2} },
       { pos: "0.2 1.96 0.34",   attributes: { intensity: 1, distance: 6, decay: 2 } },
       { pos: "-0.37 1.96 0",    attributes: { intensity: 1, distance: 6, decay: 2 } },
       { pos: "0.2 1.96 -0.34",  attributes: { intensity: 1, distance: 6, decay: 2 } },
