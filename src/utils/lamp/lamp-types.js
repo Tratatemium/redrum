@@ -2,17 +2,28 @@ const LAMP_TYPES = {
   ceiling: {
     model: "#lamp-ceiling",
     class: "lamp-ceiling",
-    lightPos: "0 -0.17 0",
-    lightAttributes: {
-      intensity: 1.2,
-      distance: 6,
-    },
+    lights: [
+      { pos: "0 -0.17 0", attributes: { intensity: 1.2, distance: 6 } },
+    ],
   },
   wall: {
     model: "#lamp-wall",
     class: "lamp-wall",
-    lightPos: "0 0 0.13",
-    lightAttributes: { intensity: 0.5, distance: 1, decay: 2 },
+    lights: [
+      { pos: "0 0 0.13", attributes: { intensity: 0.5, distance: 1, decay: 2 } },
+    ],
+  },
+  chandelier: {
+    model: "#lamp-chandelier",
+    class: "lamp-chandelier",
+    lights: [
+      { pos: "-0.2 1.96 0.34",  attributes: { intensity: 1, distance: 6, decay: 2 } },
+      { pos: "0.2 1.96 0.34",   attributes: { intensity: 1, distance: 6, decay: 2 } },
+      { pos: "-0.37 1.96 0",    attributes: { intensity: 1, distance: 6, decay: 2 } },
+      { pos: "0.2 1.96 -0.34",  attributes: { intensity: 1, distance: 6, decay: 2 } },
+      { pos: "-0.38 1.96 0.01", attributes: { intensity: 1, distance: 6, decay: 2 } },
+      { pos: "0.18 1.96 -0.34", attributes: { intensity: 1, distance: 6, decay: 2 } },
+    ],
   },
 };
 
@@ -22,16 +33,16 @@ function setLampType(lamp) {
     console.warn(`lamp-types: Unknown lamp type "${lamp.data.type}"`);
     return;
   }
+
   lamp.el.setAttribute("gltf-model", selected.model);
   lamp.el.classList.add(selected.class);
 
-  const light = lamp.el.querySelector("a-light");
-  if (!light) {
-    console.warn("lamp-types: No child a-light entity found!");
-  } else {
-    light.setAttribute("position", selected.lightPos);
-    light.setAttribute("light", selected.lightAttributes);
-  }
+  selected.lights.forEach(({ pos, attributes }) => {
+    const lightEl = document.createElement("a-light");
+    lamp.el.appendChild(lightEl);
+    lightEl.setAttribute("position", pos);
+    lightEl.setAttribute("light", { type: "point", ...attributes });
+  });
 }
 
-export { setLampType };
+export { LAMP_TYPES, setLampType };
