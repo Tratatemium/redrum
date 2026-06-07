@@ -20,13 +20,13 @@ AFRAME.registerComponent("door", {
 
     this.el.addEventListener("click", () => {
       if (!this.door) return;
-      // if (this.data.isLocked) {
-      //   SoundManager.playSoundOn("door-locked", this.el, { rolloffFactor: 2 });
-      //   return;
-      // }
+      if (this.data.isLocked) {
+        SoundManager.playSoundOn("door-locked", this.el);
+        return;
+      }
       this.isOpen
-        ? SoundManager.playSoundOn("door-open", this.el, { rolloffFactor: 2 })
-        : SoundManager.playSoundOn("door-close", this.el, { rolloffFactor: 2 });
+        ? SoundManager.playSoundOn("door-close", this.el)
+        : SoundManager.playSoundOn("door-open", this.el);
 
       this.isOpen = !this.isOpen;
       updateLampColor(this);

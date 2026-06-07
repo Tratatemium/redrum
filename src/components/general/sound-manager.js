@@ -26,7 +26,16 @@ AFRAME.registerComponent("sound-manager", {
     });
   },
 
-  playSoundOn(soundId, targetEl, options = {}) {
+  playSoundOn(
+    soundId,
+    targetEl,
+    options = {
+      volume: 1,
+      distanceModel: "linear",
+      rolloffFactor: 1.5,
+      maxDistance: 20,
+    },
+  ) {
     const compName = `sound__${soundId}`;
     targetEl.setAttribute(compName, {
       src: `#${soundId}`,
