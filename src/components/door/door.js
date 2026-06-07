@@ -20,10 +20,10 @@ AFRAME.registerComponent("door", {
 
     this.el.addEventListener("click", () => {
       if (!this.door) return;
-      if (this.data.isLocked) {
-        SoundManager.playSoundOn("door-locked", this.el);
-        return;
-      }
+      // if (this.data.isLocked) {
+      //   SoundManager.playSoundOn("door-locked", this.el);
+      //   return;
+      // }
       this.isOpen
         ? SoundManager.playSoundOn("door-close", this.el)
         : SoundManager.playSoundOn("door-open", this.el);
