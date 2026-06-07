@@ -1,21 +1,36 @@
-import AFRAME from "aframe"
+import { isInsideEntity } from "./player-collision";
 
 AFRAME.registerComponent("footstep-sounds", {
-    init() {
-        this.lastPosition = new THREE.Vector3();
-        this.currentPosition = new THREE.Vector3();
-        this.audio = document.querySelector('#footsteps')
-    },
-    tick() {
-        this.el.object3D.getWorldPosition(this.currentPosition);
-        const moved = this.currentPosition.distanceTo(this.lastPosition) > 0.001
+  init() {
+    this.ready = false;
+    this.lastPosition = new THREE.Vector3();
+    this.currentPosition = new THREE.Vector3();
 
-        if (moved && this.audio.paused) {
-            this.audio.play().catch(() => { });
-        } else if (!moved && !this.audio.paused) {
-            this.audio.pause();
-        }
+    this.normalSteps = document.querySelector("#footsteps-normal");
+    this.snowSteps = document.querySelector("#footsteps-snow");
+    this.normalSteps.volume = 0.5;
+    this.snowSteps.volume = 0.5;
+    this.maze = document.querySelector("#maze-entity");
+  },
 
-        this.lastPosition.copy(this.currentPosition);
+  tick() {
+    this.el.object3D.getWorldPosition(this.currentPosition);
+
+    if (!this.ready) {
+      this.lastPosition.copy(this.currentPosition);
+      this.ready = true;
+      return;
     }
-})
+
+    const moved = this.currentPosition.distanceTo(this.lastPosition) > 0.001;
+    const inMaze = isInsideEntity(this.maze);
+    const active = inMaze ? this.snowSteps : this.normalSteps;
+    const inactive = inMaze ? this.normalSteps : this.snowSteps;
+
+    if (!inactive.paused) inactive.pause();
+    if (moved && active.paused) active.play();
+    else if (!moved && !active.paused) active.pause();
+
+    this.lastPosition.copy(this.currentPosition);
+  },
+});

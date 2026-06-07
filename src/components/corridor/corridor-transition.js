@@ -25,9 +25,11 @@ AFRAME.registerComponent("corridor-transition", {
     const scene = this.el.sceneEl;
     scene.addEventListener("puzzle-1-solved", () => {
       this.state.puzzle_1_solved = true;
+      door2.setAttribute("door", "isLocked", false);
     });
     scene.addEventListener("puzzle-2-solved", () => {
       this.state.puzzle_2_solved = true;
+      door3.setAttribute("door", "isLocked", false);
     });
 
     scene.addEventListener("trigger-enter", async (e) => {
@@ -36,7 +38,6 @@ AFRAME.registerComponent("corridor-transition", {
           if (this.state.puzzle_1_solved && !this.state.box_1_triggered) {
             this.state.box_1_triggered = true;
             await doFirstTransition(this);
-            door2.setAttribute("door", "isLocked", false);
           }
           break;
         }
@@ -45,7 +46,6 @@ AFRAME.registerComponent("corridor-transition", {
           if (this.state.puzzle_2_solved && !this.state.box_2_triggered) {
             this.state.box_2_triggered = true;
             await doSecondTransition(this);
-            door3.setAttribute("door", "isLocked", false);
             door3cover.setAttribute("visible", false);
           }
           break;

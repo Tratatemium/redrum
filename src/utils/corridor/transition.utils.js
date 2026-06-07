@@ -5,25 +5,6 @@ function wait(s) {
   return new Promise((resolve) => setTimeout(resolve, s * 1000));
 }
 
-function playSound(id, options = {}) {
-  const el = document.getElementById(`sfx-${id}`);
-  if (!el) return;
-
-  const sound = el.components.sound;
-  if (!sound) return;
-
-  if (options.volume !== undefined) {
-    sound.setVolume(options.volume);
-  }
-
-  if (options.playbackRate !== undefined) {
-    sound.stopSound?.();
-    el.setAttribute("sound", "playbackRate", options.playbackRate);
-  }
-
-  sound.playSound();
-}
-
 function setupTransition(component) {
   component._flickers = new Map();
   component.twins = document.querySelector("#twin-ghosts");
@@ -40,7 +21,7 @@ function setupTransition(component) {
 }
 
 function flickerLights(component, s) {
-  playSound("electrical");
+  SoundManager.playSound("electrical");
   return Promise.all(
     [...component._flickers.values()].map((f) => f.flicker(s)),
   );
@@ -57,11 +38,11 @@ function lightsOn(component) {
 async function doFirstTransition(component) {
   await flickerLights(component, 2);
   lightsOff(component);
-  playSound("drop-to-dark");
+  SoundManager.playSound("drop-to-dark");
   await wait(2);
   component._flickers.get(document.getElementById("twins-lamp")).normal();
   component.twins.setAttribute("visible", true);
-  playSound("reverse-breath");
+  SoundManager.playSound("reverse-breath");
   await wait(3);
   await flickerLights(component, 1);
   component.twins.setAttribute("visible", false);
@@ -73,7 +54,7 @@ async function doSecondTransition(component) {
   await flickerLights(component, 2);
   lightsOn(component);
   component.rig.setAttribute("movement-controls", "enabled", false);
-  playSound("freezing");
+  SoundManager.playSound("freezing");
   component.screen.components["player-screen"].setColor("#EAF6FF", 0);
   component.screen.components["player-screen"].show(0.4);
   await component.screen.components["player-screen"].show(0.4);
