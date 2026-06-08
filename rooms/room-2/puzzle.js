@@ -46,12 +46,6 @@ AFRAME.registerComponent('rotate-on-click', {
           const normalizedRotation = ((rotationRadians % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
           this.el.object3D.rotation[this.data.axis] = normalizedRotation;
 
-          const pieces = [...document.querySelectorAll('.puzzle-piece')];
-          pieces.forEach((piece, index) => {
-            const degrees = THREE.MathUtils.radToDeg(piece.object3D.rotation[this.data.axis]);
-            console.log(`piece ${index + 1}: ${degrees.toFixed(1)}°`);
-          });
-
           if (isSolved()) {
             solved = true;
             console.log("solved");
