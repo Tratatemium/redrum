@@ -7,12 +7,6 @@ AFRAME.registerComponent("loading", {
     const lampsTotal = lamps.length;
     let lampsReady = 0;
 
-    //remove this later
-    if (lampsTotal === 0) {
-      onEverythingReady();
-      return;
-    }
-
     document.querySelector("a-scene").addEventListener("lamp-updated", () => {
       lampsReady++;
       if (lampsReady === lampsTotal) {
