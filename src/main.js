@@ -21,3 +21,5 @@ import "./components/corridor/corridor-transition";
 import "./components/corridor/redrum";
 import "./components/corridor/state-button";
 import "./components/corridor/event-button";
+
+import "../rooms/room-1/scripts/scene-trigger.js";
