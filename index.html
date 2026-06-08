@@ -21,6 +21,10 @@
       <a-asset-item id="statue-torso" src="/models/room-2/statue-torso.glb"></a-asset-item>
       <a-asset-item id="statue-bottom" src="/models/room-2/statue-bottom.glb"></a-asset-item>
 
+      <a-asset-item id="statue-head" src="/models/room-2/statue-head.glb"></a-asset-item>
+      <a-asset-item id="statue-legs" src="/models/room-2/statue-legs.glb"></a-asset-item>
+      <a-asset-item id="statue-torso" src="/models/room-2/statue-torso.glb"></a-asset-item>
+
       <a-asset-item id="corridor" src="/models/corridor/Corridor_01.glb"></a-asset-item>
       <a-asset-item id="room1" src="/rooms/room-1/assets/room-test.glb"></a-asset-item>
       <a-asset-item id="room-2" src="/models/room-2/room.glb"></a-asset-item>
@@ -30,22 +34,21 @@
       <audio id="door-open" src="/audio/door/door_open.mp3" preload="auto"></audio>
       <audio id="door-close" src="/audio/door/door_close.mp3" preload="auto"></audio>
       <audio id="door-locked" src="/audio/door/door_locked.mp3" preload="auto"></audio>
-      <audio id="stone1" src="/audio/statue/stone1.mp3" preload="auto"></audio>
-      <audio id="stone2" src="/audio/statue/stone2.mp3" preload="auto"></audio>
+      <audio id="stone1" src="/audio/stone/stone1.mp3" preload="auto"></audio>
+      <audio id="stone2" src="/audio/stone/stone2.mp3" preload="auto"></audio>
       <audio id="electrical" src="/audio/transition/broken_electrical.mp3" preload="auto"></audio>
       <audio id="drop-to-dark" src="/audio/transition/drop_to_dark.mp3" preload="auto"></audio>
       <audio id="reverse-breath" src="/audio/transition/reverse_breath.mp3" preload="auto"></audio>
       <audio id="freezing" src="/audio/transition/freezing.mp3" preload="auto"></audio>
       <audio id="bg-audio" src="/audio/bg-audio.mp3" preload="auto"></audio>
       <audio id="heres-johnny" src="/audio/statue/heres-johnny.mp3" preload="auto"></audio>
+      <audio id="footsteps" src="/audio/footsteps.mp3" loop preload="auto"></audio>
       <audio id="footsteps-normal" src="/audio/footsteps/footsteps_normal.mp3" loop preload="auto"></audio>
       <audio id="footsteps-snow" src="/audio/footsteps/footsteps_snow.mp3" loop preload="auto"></audio>
 
-      <img id="sky" src="/images/sky_01.png">
-      <img id="loading-screen" src="/images/loading.png">
+      <img id="sky" src="sky_01.png">
+      <img id="loading-screen" src="loading.png">
     </a-assets>
-
-    <include file="./audio.html"></include>
 
     <!-- PLAYER -->
     <a-entity id="player-rig" position="1 0 1.5" rotation="0 -90 0"
@@ -58,8 +61,7 @@
       </a-entity>
     </a-entity>
 
-    <!-- BG AUDIO -->
-    <a-entity sound="src: #bg-audio; autoplay: true; loop: true; positional: false; volume: 0.2"></a-entity>
+    <include file="./audio.html"></include>
 
     <!-- NAVMESH -->
     <a-entity id="navmesh-entity" gltf-model="#navmesh" position="0 -0.001 0" nav-mesh></a-entity>
