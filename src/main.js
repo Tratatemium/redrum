@@ -23,3 +23,4 @@ import "./components/corridor/state-button";
 import "./components/corridor/event-button";
 
 import "../rooms/room-1/scripts/scene-trigger.js";
+import "./components/lamp/room-2-light.js";
