@@ -13,7 +13,7 @@ AFRAME.registerComponent("room-2-light", {
 
     if (isInRoom2 && !this.enteredRoom2) {
       this.enteredRoom2 = true;
-      this.el.setAttribute("intensity", 0.9);
+      this.el.setAttribute("intensity", 0.5);
 
       this.savedLampAttrs = Array.from(this.corridorLamps).map((lamp) => {
         const light = lamp.getAttribute("light");
