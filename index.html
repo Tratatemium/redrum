@@ -5,7 +5,7 @@
 </head>
 
 <body>
-  <a-scene renderer="shadowMap: true" loading>
+  <a-scene renderer="shadowMap: true; shadowMapType: pcfsoft" loading>
 
     <a-assets id="assets">
       <a-asset-item id="navmesh" src="/models/Navmesh.glb"></a-asset-item>
@@ -40,14 +40,15 @@
       <audio id="drop-to-dark" src="/audio/transition/drop_to_dark.mp3" preload="auto"></audio>
       <audio id="reverse-breath" src="/audio/transition/reverse_breath.mp3" preload="auto"></audio>
       <audio id="freezing" src="/audio/transition/freezing.mp3" preload="auto"></audio>
+      <audio id="bg-audio" src="/audio/bg-audio.mp3" preload="auto"></audio>
+      <audio id="heres-johnny" src="/audio/statue/heres-johnny.mp3" preload="auto"></audio>
+      <audio id="footsteps" src="/audio/footsteps.mp3" loop preload="auto"></audio>
       <audio id="footsteps-normal" src="/audio/footsteps/footsteps_normal.mp3" loop preload="auto"></audio>
       <audio id="footsteps-snow" src="/audio/footsteps/footsteps_snow.mp3" loop preload="auto"></audio>
 
-      <img id="sky" src="/images/sky_01.png">
-      <img id="loading-screen" src="/images/loading.png">
+      <img id="sky" src="sky_01.png">
+      <img id="loading-screen" src="loading.png">
     </a-assets>
-
-    <include file="./audio.html"></include>
 
     <!-- PLAYER -->
     <a-entity id="player-rig" position="1 0 1.5" rotation="0 -90 0"
@@ -59,6 +60,8 @@
         </a-plane>
       </a-entity>
     </a-entity>
+
+    <include file="./audio.html"></include>
 
     <!-- NAVMESH -->
     <a-entity id="navmesh-entity" gltf-model="#navmesh" position="0 -0.001 0" nav-mesh></a-entity>
