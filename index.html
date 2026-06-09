@@ -5,7 +5,9 @@
 </head>
 
 <body>
-  <a-scene renderer="shadowMap: true; shadowMapType: pcfsoft" loading stats>
+  <a-scene renderer="shadowMap: true; shadowMapType: pcfsoft" stats>
+    <a-entity loading></a-entity>
+    <a-entity room-manager></a-entity>
 
     <a-assets id="assets">
       <a-asset-item id="navmesh" src="/models/Navmesh.glb"></a-asset-item>

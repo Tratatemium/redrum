@@ -1,6 +1,7 @@
 import AFRAME from "aframe";
 import "aframe-extras";
 
+import "./components/general/room-manager.js";
 import "./components/general/loading";
 import "./components/general/sound-manager";
 import "./components/player/player-screen";

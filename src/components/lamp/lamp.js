@@ -14,6 +14,7 @@ AFRAME.registerComponent("lamp", {
   },
 
   update(oldData) {
+    if (oldData.variant === undefined) return; // skip A-Frame's initial update call
     if (oldData.variant === this.data.variant) return;
     if (this._updateVariant) this._updateVariant();
   },
