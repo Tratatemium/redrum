@@ -1,6 +1,6 @@
-<a-entity id="room-1-group">
+<a-entity id="room-1-group" room-1-puzzle>
 
-    <a-entity gltf-model="#room1" position="0 0 -3.7" rotation="0 180 0">
+    <a-entity id="room-1-entity" gltf-model="#room1" position="0 0 -3.7" rotation="0 180 0">
         <a-entity lamp="type: ceiling; variant: normal" position="0 3 0"></a-entity>
         <a-entity lamp="type: ceiling; variant: normal" position="-4 3 0"></a-entity>
         <a-entity lamp="type: ceiling; variant: normal" position="0 3 -5"></a-entity>
@@ -32,7 +32,7 @@
         animation-mixer="clip: Armature|ArmatureAction">
     </a-entity>
     <a-entity class='hide' id="char2" gltf-model="#room1-char" position="0.132 2.703 5.016" visible="false"
-        scale="0.02 0.02 0.02" rotation="190 30 -10.030" animation-mixer="clip: Armature|ArmatureAction"
+        scale="0.02 0.02 0.02" rotation="190 30 -10.030" animation-mixer="clip: Armature|ArmatureAction; timeScale: 0"
         sound="src: #char2-sound; volume: 0.3; loop: false">
     </a-entity>
     <a-light class='hide' type="point" color="#ff4400" intensity=".75" distance="2" position="-3.200 0.223 4.832"
@@ -108,4 +108,3 @@
     </a-entity>
 
 </a-entity>
-<script src="./rooms/room-1/scripts/puzzle.js"></script>
