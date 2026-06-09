@@ -14,6 +14,7 @@ import "./components/door/door-variants";
 
 import "./components/lamp/lamp";
 import "./components/lamp/flicker-button";
+import "./components/lamp/room-2-light.js";
 
 import "./components/corridor/corridor-textures";
 import "./components/corridor/corridor-state";
@@ -22,5 +23,6 @@ import "./components/corridor/redrum";
 import "./components/corridor/state-button";
 import "./components/corridor/event-button";
 
-import "../rooms/room-1/scripts/scene-trigger.js";
-import "./components/lamp/room-2-light.js";
+import "./components/room-1/scene-trigger.js";
+
+import "./components/room-2/room-2-puzzle.js";
