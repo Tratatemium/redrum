@@ -3,10 +3,11 @@ import { isInsideEntity } from "../player/player-collision";
 AFRAME.registerComponent("room-manager", {
   init() {
     // console.log("mounted");
-    this.corridor = document.querySelector("#corridor-entity");
-    this.maze = document.querySelector("#maze-entity");
-    this.room1 = document.querySelector("#room-1-entity");
-    this.room2 = document.querySelector("#room-2-entity");
+
+    this.corridor = document.querySelector("#corridor-group");
+    this.maze = document.querySelector("#maze-group");
+    this.room1 = document.querySelector("#room-1-group");
+    this.room2 = document.querySelector("#room-2-group");
     this.rooms = [this.corridor, this.maze, this.room1, this.room2];
 
     this.activeRoom = null;
@@ -32,7 +33,7 @@ AFRAME.registerComponent("room-manager", {
 
     if (newActiveRoom === this.activeRoom) return;
 
-    // console.log(`now in room ${newActiveRoom}`);
+    // console.log(`now in room ${newActiveRoom.id}`);
 
     if (this.activeRoom) {
       this.deactivateRoom(this.activeRoom);
