@@ -24,5 +24,6 @@ import "./components/corridor/state-button";
 import "./components/corridor/event-button";
 
 import "./components/room-1/scene-trigger.js";
+import "./components/room-1/room-1-puzzle.js";
 
 import "./components/room-2/room-2-puzzle.js";
