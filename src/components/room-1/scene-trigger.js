@@ -15,12 +15,12 @@ AFRAME.registerComponent("scene-trigger", {
         this.el.object3D.getWorldPosition(this.playerPos);
         const z = this.playerPos.z;
 
-        if (!this.firstDone && z < -4.5) {
+        if (!this.firstDone && z < -4) {
             this.firstDone = true;
             this.char.setAttribute("visible", false);
         }
 
-        if (!this.secondDone && z < -8.1) {
+        if (!this.secondDone && z < -8.2) {
             this.secondDone = true;
             this.char2.setAttribute("animation-mixer", "clip: Armature|ArmatureAction; timeScale: 1");
             this.char2.setAttribute("visible", true);
