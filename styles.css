@@ -1,0 +1,56 @@
+#endScreen {
+  position: fixed;
+  inset: 0;
+  background: #eaf6ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: Georgia, serif;
+}
+
+#endScreen.hidden {
+  display: none;
+}
+
+.end-card {
+  text-align: center;
+  padding: 3rem;
+  max-width: 600px;
+}
+
+.end-card h1 {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: #111;
+}
+
+.end-card p {
+  margin: 1.5rem 0 3rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+}
+
+#replayBtn {
+  background: transparent;
+  color: #111;
+  border: 2px solid #111;
+  padding: 14px 40px;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#replayBtn:hover {
+  background: #111;
+  color: #eaf6ff;
+  transform: translateY(-2px);
+}
+
+#replayBtn:active {
+  transform: translateY(0);
+}

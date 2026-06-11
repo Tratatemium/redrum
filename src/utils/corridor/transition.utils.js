@@ -60,7 +60,6 @@ async function doSecondTransition(component) {
   component.rig.setAttribute("movement-controls", "enabled", false);
   SoundManager.playSound("freezing");
   component.screen.components["player-screen"].setColor("#EAF6FF", 0);
-  component.screen.components["player-screen"].show(0.4);
   await component.screen.components["player-screen"].show(0.4);
   await wait(2);
   component.rig.setAttribute("movement-controls", "enabled", true);

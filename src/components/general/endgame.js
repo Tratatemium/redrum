@@ -8,6 +8,17 @@ AFRAME.registerComponent("endgame", {
     const rig = document.querySelector("#player-rig");
     const screen = document.querySelector("#player-screen");
 
+    const endScreen = document.getElementById("endScreen");
+    const replayBtn = document.getElementById("replayBtn");
+
+    function gameOver() {
+      endScreen.classList.remove("hidden");
+    }
+
+    replayBtn.addEventListener("click", () => {
+      location.reload();
+    });
+
     let triggered = false;
 
     scene.addEventListener("trigger-enter", async (e) => {
@@ -38,8 +49,8 @@ AFRAME.registerComponent("endgame", {
         });
 
         screen.components["player-screen"].setColor("#EAF6FF", 0);
-        // screen.components["player-screen"].show(0.4);
         await screen.components["player-screen"].show(1);
+        gameOver();
       }
     });
   },

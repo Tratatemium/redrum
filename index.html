@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REDRUM: Escape from Overlook Hotel</title>
+  <link rel="stylesheet" href="./styles.css">
   <link rel="icon" href="/favicon.ico">
   <script type="module" src="./src/main.js"></script>
 </head>
@@ -107,6 +108,18 @@
     </a-entity>
 
   </a-scene>
+
+  <div id="endScreen" class="hidden">
+    <div class="end-card">
+      <h1>YOU ESCAPED</h1>
+      <p>
+        The maze is behind you.<br>
+        The cold no longer follows.
+      </p>
+
+      <button id="replayBtn">REPLAY</button>
+    </div>
+  </div>
 </body>
 
 </html>
