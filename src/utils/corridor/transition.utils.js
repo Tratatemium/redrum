@@ -36,6 +36,7 @@ function lightsOn(component) {
 }
 
 async function doFirstTransition(component) {
+  SoundManager.stopSound("music_normal");
   await flickerLights(component, 2);
   lightsOff(component);
   SoundManager.playSound("drop-to-dark");
@@ -43,14 +44,17 @@ async function doFirstTransition(component) {
   component._flickers.get(document.getElementById("twins-lamp")).normal();
   component.twins.setAttribute("visible", true);
   SoundManager.playSound("reverse-breath");
+  SoundManager.playSound("girl-laugh");
   await wait(3);
   await flickerLights(component, 1);
   component.twins.setAttribute("visible", false);
   component.corridor.components["corridor-state"].setState("decayed");
   await flickerLights(component, 1);
+  SoundManager.playSound("music_decayed", { loop: true, volume: 0.7 });
 }
 
 async function doSecondTransition(component) {
+  SoundManager.stopSound("music_decayed");
   await flickerLights(component, 2);
   lightsOn(component);
   component.rig.setAttribute("movement-controls", "enabled", false);
@@ -64,6 +68,7 @@ async function doSecondTransition(component) {
   component.screen.components["player-screen"].setColor("#ffffff", 0);
   component.corridor.components["corridor-state"].setState("frosted");
   await flickerLights(component, 1);
+  SoundManager.playSound("music-frosted", { loop: true, volume: 0.7 });
 }
 
 export { setupTransition, doFirstTransition, doSecondTransition };
