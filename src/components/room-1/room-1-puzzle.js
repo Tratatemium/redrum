@@ -5,7 +5,6 @@ AFRAME.registerComponent("room-1-puzzle", {
     const token2 = document.querySelector(".token-2");
     const token3 = document.querySelector(".token-3");
     const lights = document.querySelectorAll(".light");
-    const animation = document.querySelectorAll(".animated");
     const hide = document.querySelectorAll(".hide");
     let solved = false;
 
@@ -17,16 +16,6 @@ AFRAME.registerComponent("room-1-puzzle", {
       lights.forEach((light) => {
         light.setAttribute("color", "#FFF");
       });
-
-      let i = 0;
-      function stopNext() {
-        if (i >= animation.length) return;
-        const el = animation[i++];
-        el.removeAttribute("animation");
-        el.setAttribute("animation-mixer", "timeScale: 0");
-        setTimeout(stopNext, 0);
-      }
-      stopNext();
 
       hide.forEach((element) => {
         element.setAttribute("visible", false);
