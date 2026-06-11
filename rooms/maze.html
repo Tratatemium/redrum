@@ -1,6 +1,7 @@
 <a-entity id="maze-group">
-
-    <a-entity id="maze-entity" gltf-model="#maze-full" position="0 0 0" scale="1 1 1"></a-entity>
+    <a-entity id="maze-entity" gltf-model="#maze" position="0 0 0" scale="1 1 1" endgame></a-entity>
+    <a-entity gltf-model="#overlook-hotel" position="0.01 0 1.5" scale="1 1 1"></a-entity>
     <a-entity position="10 5 1.5" snow-particles="count: 5000; spread: 20 10 20; speed: 1.5; size: 0.02"></a-entity>
-    <!-- <a-entity gltf-model="#overlook-hotel" position="0.01 0 1.5" scale="1 1 1"></a-entity> -->
+    <a-box id="trigger-endgame" class="trigger-box" width="3" height="3" depth="0.1" position="14.7 1.5 -0.5"
+        rotation="0 -90 0" visible="false"></a-box>
 </a-entity>
