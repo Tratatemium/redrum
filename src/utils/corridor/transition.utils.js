@@ -60,6 +60,7 @@ async function doSecondTransition(component) {
   component.rig.setAttribute("movement-controls", "enabled", false);
   SoundManager.playSound("freezing");
   component.screen.components["player-screen"].setColor("#EAF6FF", 0);
+  component.screen.components["player-screen"].show(0.4);
   await component.screen.components["player-screen"].show(0.4);
   await wait(2);
   component.rig.setAttribute("movement-controls", "enabled", true);
@@ -67,7 +68,7 @@ async function doSecondTransition(component) {
   component.screen.components["player-screen"].setColor("#ffffff", 0);
   component.corridor.components["corridor-state"].setState("frosted");
   await flickerLights(component, 1);
-  SoundManager.playSound("music-frosted", { loop: true, volume: 0.7 });
+  SoundManager.playSound("music_frosted", { loop: true, volume: 0.7 });
 }
 
 export { setupTransition, doFirstTransition, doSecondTransition };

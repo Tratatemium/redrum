@@ -12,6 +12,13 @@ AFRAME.registerComponent("endgame", {
     const replayBtn = document.getElementById("replayBtn");
 
     function gameOver() {
+      if (scene.is("vr-mode")) {
+        scene.exitVR();
+      }
+
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
       endScreen.classList.remove("hidden");
     }
 
