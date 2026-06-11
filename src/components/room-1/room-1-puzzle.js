@@ -38,6 +38,7 @@ AFRAME.registerComponent("room-1-puzzle", {
           almost(token3.getAttribute("rotation").y, 40)
         ) {
           solved = true;
+          this.sceneEl.emit("puzzle-2-solved");
           setTimeout(onSolved, 0);
         }
       });
