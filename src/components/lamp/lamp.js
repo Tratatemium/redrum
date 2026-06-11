@@ -8,7 +8,7 @@ AFRAME.registerComponent("lamp", {
   },
 
   init() {
-    this.el.classList.add("clickable");
+    // this.el.classList.add("clickable");
     setLampType(this);
     handleVariants(this);
   },
