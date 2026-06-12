@@ -2,6 +2,7 @@ AFRAME.registerComponent("loading", {
   init() {
     const screen = document.querySelector("#player-screen");
     const rig = document.querySelector("#player-rig");
+    const scene = document.querySelector("a-scene");
 
     const lamps = document.querySelectorAll("[lamp]");
     const lampsTotal = lamps.length;
@@ -16,9 +17,10 @@ AFRAME.registerComponent("loading", {
 
     async function onEverythingReady() {
       console.log("All lamps applied their variant — scene is ready");
-      rig.setAttribute("movement-controls", "enabled", true);
       await screen.components["player-screen"].hide(0.6);
       screen.components["player-screen"].clearTexture(0);
+      rig.setAttribute("movement-controls", "enabled", true);
+      scene.emit("game-started");
     }
   },
 });

@@ -80,12 +80,20 @@
           player-screen="color: #ffffff; opacity: 1; src: #loading-screen">
         </a-plane>
       </a-entity>
+
+      <!-- VR CONTROLLERS -->
+      <a-entity id="left-hand" hand-controls="hand: left" laser-controls="hand: left"
+        raycaster="objects: .clickable; far: 10" line="color: #c0000c; opacity: 0.6">
+      </a-entity>
+      <a-entity id="right-hand" hand-controls="hand: right" laser-controls="hand: right"
+        raycaster="objects: .clickable; far: 10" line="color: #c0000c; opacity: 0.6">
+      </a-entity>
     </a-entity>
 
     <include file="./audio.html"></include>
 
     <!-- NAVMESH -->
-    <a-entity id="navmesh-entity" gltf-model="#navmesh" position="0 -0.001 0" nav-mesh></a-entity>
+    <a-entity id="navmesh-entity" gltf-model="#navmesh" position="0 -0.001 0" nav-mesh visible="false"></a-entity>
 
     <!-- LIGHT -->
     <a-light type="ambient" color="#ddcea7" intensity="0.05" room-2-light></a-light>
@@ -113,7 +121,8 @@
     <div class="start-card">
       <h1>REDRUM</h1>
       <p class="start-subtitle">Escape from Overlook Hotel</p>
-      <button id="startBtn"><span class="btn-label">START</span><span class="btn-spinner" aria-hidden="true"></span></button>
+      <button id="startBtn"><span class="btn-label">START</span><span class="btn-spinner"
+          aria-hidden="true"></span></button>
     </div>
   </div>
 

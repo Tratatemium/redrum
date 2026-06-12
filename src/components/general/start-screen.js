@@ -17,6 +17,5 @@ startBtn.addEventListener("click", async () => {
   await sceneReady;
   const scene = document.querySelector("a-scene");
   scene.enterVR().catch(() => {});
-  scene.emit("game-started");
   startScreen.classList.add("hidden");
 });
