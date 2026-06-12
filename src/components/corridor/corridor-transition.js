@@ -22,15 +22,14 @@ AFRAME.registerComponent("corridor-transition", {
 
     setupTransition(this);
 
-    const startMusic = () =>
-      SoundManager.playSound("music_normal", { loop: true, volume: 0.7 });
-    if (this.el.sceneEl.hasLoaded) {
-      startMusic();
-    } else {
-      this.el.sceneEl.addEventListener("loaded", startMusic, { once: true });
-    }
-
     const scene = this.el.sceneEl;
+    scene.addEventListener(
+      "game-started",
+      () => {
+        SoundManager.playSound("music_normal", { loop: true, volume: 0.7 });
+      },
+      { once: true },
+    );
     scene.addEventListener("puzzle-1-solved", () => {
       this.state.puzzle_1_solved = true;
       door2.setAttribute("door", "isLocked", false);
