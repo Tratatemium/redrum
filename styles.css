@@ -63,7 +63,7 @@
   transform: translateY(0);
 }
 
-
+#endScreen {
   position: fixed;
   inset: 0;
   background: #eaf6ff;
