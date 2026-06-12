@@ -11,8 +11,8 @@ const sceneReady = new Promise((resolve) => {
 });
 
 startBtn.addEventListener("click", async () => {
-  document.documentElement.requestFullscreen().catch(() => {});
+  try { await document.documentElement.requestFullscreen(); } catch (_) {}
   await sceneReady;
-  window.SoundManager.playSound("music_normal", { loop: true, volume: 0.7 });
+  document.querySelector("a-scene").emit("game-started");
   startScreen.classList.add("hidden");
 });
