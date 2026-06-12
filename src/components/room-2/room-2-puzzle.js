@@ -56,7 +56,7 @@ AFRAME.registerComponent("rotate-on-click", {
             document
               .querySelector("#statue-lamp")
               .setAttribute("lamp", "variant: normal");
-            document.querySelector("#statue").components.sound.playSound();
+            SoundManager.playSound("heres-johnny");
           }
         },
       });

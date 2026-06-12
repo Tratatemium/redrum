@@ -1,6 +1,11 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REDRUM: Escape from Overlook Hotel</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="icon" href="/favicon.ico">
   <script type="module" src="./src/main.js"></script>
 </head>
 
@@ -37,6 +42,7 @@
       <a-asset-item id="corridor" src="/models/corridor/Corridor_01.glb"></a-asset-item>
       <a-asset-item id="room1" src="/models/room-1/room-mesh.glb"></a-asset-item>
       <a-asset-item id="room-2" src="/models/room-2/room.glb"></a-asset-item>
+      <!-- <a-asset-item id="maze-full" src="/models/maze/maze_full-opt.glb"></a-asset-item> -->
       <a-asset-item id="maze" src="/models/maze/Maze.glb"></a-asset-item>
       <a-asset-item id="overlook-hotel" src="/models/maze/Overlook_hotel.glb"></a-asset-item>
 
@@ -49,12 +55,17 @@
       <audio id="electrical" src="/audio/transition/broken_electrical.mp3" preload="auto"></audio>
       <audio id="drop-to-dark" src="/audio/transition/drop_to_dark.mp3" preload="auto"></audio>
       <audio id="reverse-breath" src="/audio/transition/reverse_breath.mp3" preload="auto"></audio>
+      <audio id="girl-laugh" src="/audio/transition/girl_laugh.mp3" preload="auto"></audio>
       <audio id="freezing" src="/audio/transition/freezing.mp3" preload="auto"></audio>
       <audio id="bg-audio" src="/audio/bg-audio.mp3" preload="auto"></audio>
       <audio id="heres-johnny" src="/audio/statue/heres-johnny.mp3" preload="auto"></audio>
       <audio id="footsteps-normal" src="/audio/footsteps/footsteps_normal.mp3" loop preload="auto"></audio>
       <audio id="footsteps-snow" src="/audio/footsteps/footsteps_snow.mp3" loop preload="auto"></audio>
       <audio id="char2-sound" src="/audio/char2long.mp3" loop preload="auto"></audio>
+
+      <audio id="music_normal" src="/audio/background/normal.mp3" loop preload="auto"></audio>
+      <audio id="music_decayed" src="/audio/background/decayed.mp3" loop preload="auto"></audio>
+      <audio id="music_frosted" src="/audio/background/frosted.mp3" loop preload="auto"></audio>
 
       <img id="sky" src="/images/sky_01.png">
       <img id="loading-screen" src="/images/loading.png">
@@ -97,6 +108,18 @@
     </a-entity>
 
   </a-scene>
+
+  <div id="endScreen" class="hidden">
+    <div class="end-card">
+      <h1>YOU ESCAPED</h1>
+      <p>
+        The maze is behind you.<br>
+        The cold no longer follows.
+      </p>
+
+      <button id="replayBtn">REPLAY</button>
+    </div>
+  </div>
 </body>
 
 </html>

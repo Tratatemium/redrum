@@ -39,6 +39,7 @@ function setLampType(lamp) {
   lamp.el.classList.add(selected.class);
 
   selected.lights.forEach(({ pos, attributes }) => {
+    if (lamp.data.type === "wall") return;
     const lightEl = document.createElement("a-light");
     lamp.el.appendChild(lightEl);
     lightEl.setAttribute("position", pos);
