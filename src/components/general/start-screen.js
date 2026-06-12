@@ -11,7 +11,9 @@ const sceneReady = new Promise((resolve) => {
 });
 
 startBtn.addEventListener("click", async () => {
-  try { await document.documentElement.requestFullscreen(); } catch (_) {}
+  try {
+    await document.documentElement.requestFullscreen();
+  } catch (_) {}
   await sceneReady;
   document.querySelector("a-scene").emit("game-started");
   startScreen.classList.add("hidden");
