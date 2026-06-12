@@ -30,3 +30,4 @@ import "./components/room-1/room-1-puzzle.js";
 import "./components/room-2/room-2-puzzle.js";
 
 import "./components/general/endgame.js";
+import "./components/general/start-screen.js";
