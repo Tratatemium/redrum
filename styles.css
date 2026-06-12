@@ -50,6 +50,33 @@
   cursor: pointer;
   transition: all 0.25s ease;
   font-family: Georgia, serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#startBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.btn-spinner {
+  display: none;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(192, 0, 12, 0.3);
+  border-top-color: #c0000c;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+#startBtn.loading .btn-spinner {
+  display: block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 #startBtn:hover {

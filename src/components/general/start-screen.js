@@ -11,10 +11,12 @@ const sceneReady = new Promise((resolve) => {
 });
 
 startBtn.addEventListener("click", async () => {
-  try {
-    await document.documentElement.requestFullscreen();
-  } catch (_) {}
+  startBtn.disabled = true;
+  startBtn.classList.add("loading");
+  document.documentElement.requestFullscreen().catch(() => {});
   await sceneReady;
-  document.querySelector("a-scene").emit("game-started");
+  const scene = document.querySelector("a-scene");
+  scene.enterVR().catch(() => {});
+  scene.emit("game-started");
   startScreen.classList.add("hidden");
 });
